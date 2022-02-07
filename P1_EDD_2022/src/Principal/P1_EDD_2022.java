@@ -1,11 +1,21 @@
 
 package Principal;
 import java.util.*;
-//AQUI INICIA
-
+import Test.Test;
+//LIBRERIA
+/*import java.io.FileNotFoundException;
+import java.io.IOException;
+import org.json.simple.parser.ParseException;*/
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import org.json.simple.parser.ParseException;
 
 public class P1_EDD_2022 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ParseException {
         int opcion;
         boolean salida = false;
         Scanner ingresoTeclado = new Scanner(System.in);
@@ -44,7 +54,14 @@ public class P1_EDD_2022 {
                         System.out.println("OPCION 6");
                         break;
                     case 10:
-
+                        JSONParser json = new JSONParser();
+                        FileReader leer = new FileReader("D:\\AXEL\\DOCUMENTOS\\U--OTROS\\GITHUB\\EDD-2022\\EDD_UDRAWING_FASE1_201901458\\P1_EDD_2022\\src\\Test\\json.json");
+                        Object obj = json.parse(leer);
+                        JSONObject empjsonobj = (JSONObject) obj;
+                        JSONArray array=(JSONArray)empjsonobj.get("Cliente1");
+                        JSONObject aa=(JSONObject) array.get(0);
+                        String bb=(String) aa.get("id_cliente");
+                        System.out.println(aa+bb);
                         break; 
                     case 50:
                         salida = true;
