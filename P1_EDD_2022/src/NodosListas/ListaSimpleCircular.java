@@ -15,4 +15,5 @@ public class ListaSimpleCircular {
         }
         lc=nuevo;
     }
+    
 }

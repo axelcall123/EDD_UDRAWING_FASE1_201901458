@@ -1,30 +1,24 @@
 
 package Principal;
 import java.util.*;
-import Test.Test;
 //LIBRERIA
-/*import java.io.FileNotFoundException;
-import java.io.IOException;
-import org.json.simple.parser.ParseException;*/
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import org.json.simple.parser.ParseException;
-
+import Test.Test;
+import NodosListas.*;
+import Menu.opMenu;
 public class P1_EDD_2022 {
-    public static void main(String[] args) throws IOException, FileNotFoundException, ParseException {
-        int opcion;
+    public static void main(String[] args){
+        int opcion,caso2=0;
         boolean salida = false;
         Scanner ingresoTeclado = new Scanner(System.in);
+        ListaSimple ventanillas = new ListaSimple();
+
+        opMenu parametros = new opMenu();
         // System.out.println(ej.Mostrar_Tablero());
         do {
             //////////////////////////////////////////// COMIENZO DEL MENU NUEVA PARTIDA
             //////////////////////////////////////////// ////////////////////////////////////////
             System.out.println("******NUEVA PARTIDA******");
-            System.out.println("1. PARAMETROS--CARGA MASICA");
+            System.out.println("1. PARAMETROS--CARGA MASIVA");
             System.out.println("2. PARAMETROS--CANTIDAD DE VENTANILLAS");
             System.out.println("3. EJECUTAR PASO");
             System.out.println("4. ESTADO EN MEMORIA DE LAS ESTRUCTURAS");
@@ -37,9 +31,18 @@ public class P1_EDD_2022 {
                 switch (opcion) {
                     case 1:
                         System.out.println("OPCION 1");
+                        /*if(ventanillas==null){
+                            System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS");
+                        }else{*/
+                            parametros.casoUno();
+                        //}
+                        //ventanillas.ver();
                         break;
                     case 2:
-                        System.out.println("OPCION 2");
+                        System.out.println("ELIGA LAS CANTIDAD DE VENTANILLAS DISPONIBLE");
+                        Scanner ingresoOp2 = new Scanner(System.in);
+                        caso2 = ingresoOp2.nextInt();
+                        ventanillas=parametros.casoDos(caso2);
                         break;
                     case 3:
                         System.out.println("OPCION 3");
@@ -54,14 +57,8 @@ public class P1_EDD_2022 {
                         System.out.println("OPCION 6");
                         break;
                     case 10:
-                        JSONParser json = new JSONParser();
-                        FileReader leer = new FileReader("D:\\AXEL\\DOCUMENTOS\\U--OTROS\\GITHUB\\EDD-2022\\EDD_UDRAWING_FASE1_201901458\\P1_EDD_2022\\src\\Test\\json.json");
-                        Object obj = json.parse(leer);
-                        JSONObject empjsonobj = (JSONObject) obj;
-                        JSONArray array=(JSONArray)empjsonobj.get("Cliente1");
-                        JSONObject aa=(JSONObject) array.get(0);
-                        String bb=(String) aa.get("id_cliente");
-                        System.out.println(aa+bb);
+                        Test ts= new Test();
+                        ts.ReadJson();
                         break; 
                     case 50:
                         salida = true;

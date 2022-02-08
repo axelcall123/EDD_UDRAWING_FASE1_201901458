@@ -32,7 +32,7 @@ public class ListasListas {
             aux=aux.sig;
             contador+=1;
         }
-        
+        //TODO: NOTA PUEDE HABER ERROR SI NO SE PONE BIEN
         if(primero==null){
             aux.pZ=nuevo;
         }else{

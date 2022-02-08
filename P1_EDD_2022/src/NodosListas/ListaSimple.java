@@ -20,5 +20,13 @@ public class ListaSimple {
             nodo_aux.sig = nuevo;
         }
     }
+    public void ver(){
+        NodoS aux=new NodoS();
+        aux=primero;
+        while(aux!=null){
+            System.out.println("TIENE(LS)-> "+aux.info);
+            aux=aux.sig;
+        }
+    }
 
 }
