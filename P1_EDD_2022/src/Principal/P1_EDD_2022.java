@@ -11,13 +11,13 @@ public class P1_EDD_2022 {
         boolean salida = false;
         Scanner ingresoTeclado = new Scanner(System.in);
         ListaSimple ventanillas = new ListaSimple();
-
+        ListaSimple clientesCola = new ListaSimple();
         opMenu parametros = new opMenu();
         // System.out.println(ej.Mostrar_Tablero());
         do {
             //////////////////////////////////////////// COMIENZO DEL MENU NUEVA PARTIDA
             //////////////////////////////////////////// ////////////////////////////////////////
-            System.out.println("******NUEVA PARTIDA******");
+            System.out.println("******MENU PRINCIPAL******");
             System.out.println("1. PARAMETROS--CARGA MASIVA");
             System.out.println("2. PARAMETROS--CANTIDAD DE VENTANILLAS");
             System.out.println("3. EJECUTAR PASO");
@@ -31,11 +31,17 @@ public class P1_EDD_2022 {
                 switch (opcion) {
                     case 1:
                         System.out.println("OPCION 1");
-                        /*if(ventanillas==null){
+                        if(ventanillas==null){
                             System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS");
-                        }else{*/
-                            parametros.casoUno();
-                        //}
+                        }else{
+                            clientesCola=parametros.casoUno();
+                            /*clientesCola.verTodo();
+                            int tamaño=clientesCola.length();
+                            for(int i=0;i<tamaño;i++){
+                                Object[] array=(Object[])clientesCola.verPosicion(i);
+                                System.out.println(array[0].toString()+array[1].toString()+array[2].toString()+array[3].toString());
+                            }*/
+                        }
                         //ventanillas.ver();
                         break;
                     case 2:

@@ -10,7 +10,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import NodosListas.ListaSimple;
+import java.util.LinkedList;
 
 /*LINKS DE LA INFORMACION*/
 //https://www.educba.com/json-in-java/
@@ -18,17 +21,42 @@ import java.util.Iterator;
 //SE NECESITA JSON-SIMPLE
 public class Test {
     public void ReadJson(){
+        //["][a-zA-Z][a-zA-Z|0-9]+["][:][ ]*[{]
+        
         JSONParser parser = new JSONParser();
+        
         try (FileReader reader = new FileReader("D:\\AXEL\\DOCUMENTOS\\U--OTROS\\GITHUB\\EDD-2022\\EDD_UDRAWING_FASE1_201901458\\P1_EDD_2022\\src\\Test\\json.json")){
             JSONObject json = (JSONObject) parser.parse(reader);
-              
-            Map address1 = ((Map)json.get("Cliente1")); 
-            //System.out.println(address1);
-            Iterator<Map.Entry> itr1 = address1.entrySet().iterator();
-            while (itr1.hasNext()) {
-            Map.Entry pair1 = itr1.next();
-                System.out.println(pair1.getKey() + " <-:-> " + pair1.getValue());
+            //TXT JSON
+            LinkedList<String> nombres = new LinkedList<String>();
+            String jsonSt=json.toString();
+            System.out.println(jsonSt);
+            String regex="[\"][a-zA-Z][a-zA-Z|0-9]+[\"][:][ ]*[{]";
+            Pattern patron = Pattern.compile(regex);
+
+            Matcher m=patron.matcher(jsonSt);
+            String remplazo="";
+            while(m.find()){
+            remplazo=m.group().replace(" ","");
+            remplazo=remplazo.replace("\"","");
+            remplazo = remplazo.replace("{", "");
+            remplazo = remplazo.replace(":", "");
+            //System.out.println("COINCIENCIA: "+remplazo);
+             nombres.addLast(remplazo);
             }
+            for (String idNombre : nombres) {
+                // LEYENDO JSON NORMAL
+                Map address1 = ((Map) json.get(idNombre));
+                // System.out.println(address1);
+                Iterator<Map.Entry> itr1 = address1.entrySet().iterator();
+                System.out.println("->"+idNombre);
+                while (itr1.hasNext()) {
+                    Map.Entry pair1 = itr1.next();
+                    System.out.println("--->"+pair1.getKey() + " <-:-> " + pair1.getValue());
+                }
+            }
+           
+            /**/
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
