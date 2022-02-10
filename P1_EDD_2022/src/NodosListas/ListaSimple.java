@@ -43,7 +43,7 @@ public class ListaSimple {
         NodoS aux=new NodoS();
         aux=primero;
         while(aux!=null){
-            //System.out.println("TIENE(LS)-> "+aux.info);
+            System.out.println("TIENE(LS)-> "+aux.info);
             aux=aux.sig;
         }
     }
@@ -60,6 +60,26 @@ public class ListaSimple {
         return aux.info;  
     }
     
+    public ListaSimple pop(){//PRIMERO EN LA FILA
+        ListaSimple aux= new ListaSimple();//CREO NEW
+        aux.instarInicio(primero.info);//OBTENGO LA INFO TEMP LA COPIA SIN REF
+        if(primero==null){
+            return null;
+        }else{
+           primero=primero.sig;//MUEVO EL PUNTERO
+           tamaño--;
+           return aux;
+        }   
+    }
 
-
+    public void sustituirId(int posicion,Object info){//BUSCA Y SUSTITUYE AL MISMO TIEMPO
+        NodoS aux = new NodoS();
+        aux = primero;
+        int contador = 0;
+        while (contador < posicion && contador <= tamaño) {//VEO LA POSICION
+            aux = aux.sig;
+            contador += 1;
+        }
+        aux.info=info;//LE TRASLADO NUEVA INFORMACION
+    }
 }

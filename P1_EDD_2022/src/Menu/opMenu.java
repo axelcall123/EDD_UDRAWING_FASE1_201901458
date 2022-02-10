@@ -2,6 +2,7 @@ package Menu;
 
 import NodosListas.*;
 import Principal.*;
+import funcionalidad.funcInternas;
 ////
 import java.io.File;
 import java.io.FileReader;
@@ -26,7 +27,7 @@ public class opMenu {
         int contador=0;
         System.out.println("$$$$$$>CREANDO VENTANAS");
         while(contador<caso2){//INSERTO POR DEFAULT CON LA LETRA D
-            ventanillas.instarFinal("D");
+            ventanillas.instarFinal("Vacia");
             contador+=1;
         }
         System.out.println("$$$$$$>VENTANAS CREADAS");
@@ -58,7 +59,7 @@ public class opMenu {
             Matcher m = patron.matcher(jsonSt);
             String remplazo = "";
             //ARRAY
-            
+            System.out.println("$$$$$$>CARGANDO ARCHIVO");
             while (m.find()) {
                 //REGEX REMPLAZA ESTO:
                 remplazo = m.group().replace(" ", "");
@@ -69,16 +70,17 @@ public class opMenu {
                 //JSON NORMAL
                 Map address1 = ((Map) json.get(remplazo));
                 Iterator<Map.Entry> itr1 = address1.entrySet().iterator();
-                String[] clientesEspera = new String[4];
+                String[] clientesEspera = new String[5];
                 int contador=0;//SRIVE PARA MANDAR AL
                 while (itr1.hasNext()) {// OBTIENE TODO DEL Cliente#n
                     Map.Entry pair1 = itr1.next();
-                    //COLOR ID BN NOMBRE
+                    //COLOR ID BN NOMBRE:->PASOS(num)
                     //System.out.println("id:"+contador+" "+pair1.getKey() + " <-:-> " + pair1.getValue());
                     //
                     clientesEspera[contador]=pair1.getValue().toString();
                     contador+=1;
                 }
+                clientesEspera[4]="0";//AGREAG UN STRING NUMERO PARA VER LOS PASOS
                 //System.out.println("TIPO2: "+clientesEspera.getClass().getName());
                 clientes.instarInicio(clientesEspera);
             }
@@ -92,11 +94,13 @@ public class opMenu {
         return clientes;
     }
 
-    public Object casoTres(int vPasos,int pasosTot,Object CoInic,Object coImp,Object clientAtent,Object colaVenta,Object clientesEspera){
+    public Object casoTres(int vPasos,int pasosTot,ListaSimple coInicial,Object coImp,Object clienteAtendido,ListaSimple ventana,Object clienteEspera){
         int Contador=0;
         while(Contador<vPasos){
-
+            funcInternas func= new funcInternas();
+            Object[] arrayDev=func.ingrearVentanaImg(ventana,coInicial);
             Contador+=1;
+            
         }
         return 0;
     }
