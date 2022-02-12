@@ -4,7 +4,7 @@ import java.util.*;
 //LIBRERIA
 import Test.Test;
 import NodosListas.*;
-import Menu.opMenu;
+import funcionalidad.opMenu;
 public class P1_EDD_2022 {
     public static void main(String[] args){
         int opcion,caso2=0;
@@ -72,7 +72,8 @@ public class P1_EDD_2022 {
                         //PASO2
                         ventanillas = casosNum.casoDos(3);
                         //PASO3
-                        casosNum.casoTres(1, 0, clientesCola, null, null, ventanillas, null);
+                        //vPasos,coInicial,coImp,clienteAtendido,ventana,clienteEspera
+                        casosNum.casoTres(2, clientesCola, null, null, ventanillas, null);
                         break; 
                     case 50:
                         salida = true;

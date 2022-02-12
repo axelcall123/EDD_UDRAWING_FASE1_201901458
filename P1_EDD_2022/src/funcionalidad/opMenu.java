@@ -1,8 +1,7 @@
-package Menu;
+package funcionalidad;
 
 import NodosListas.*;
 import Principal.*;
-import funcionalidad.funcInternas;
 ////
 import java.io.File;
 import java.io.FileReader;
@@ -25,12 +24,12 @@ public class opMenu {
             caso2=1;
         }
         int contador=0;
-        System.out.println("$$$$$$>CREANDO VENTANAS");
+        System.out.println("$>CREANDO VENTANAS");
         while(contador<caso2){//INSERTO POR DEFAULT CON LA LETRA D
             ventanillas.instarFinal("Vacia");
             contador+=1;
         }
-        System.out.println("$$$$$$>VENTANAS CREADAS");
+        System.out.println("$>VENTANAS CREADAS");
         return ventanillas;
     }
 
@@ -59,7 +58,7 @@ public class opMenu {
             Matcher m = patron.matcher(jsonSt);
             String remplazo = "";
             //ARRAY
-            System.out.println("$$$$$$>CARGANDO ARCHIVO");
+            System.out.println("$>CARGANDO ARCHIVO");
             while (m.find()) {
                 //REGEX REMPLAZA ESTO:
                 remplazo = m.group().replace(" ", "");
@@ -76,7 +75,6 @@ public class opMenu {
                     Map.Entry pair1 = itr1.next();
                     //COLOR ID BN NOMBRE:->PASOS(num)
                     //System.out.println("id:"+contador+" "+pair1.getKey() + " <-:-> " + pair1.getValue());
-                    //
                     clientesEspera[contador]=pair1.getValue().toString();
                     contador+=1;
                 }
@@ -94,11 +92,14 @@ public class opMenu {
         return clientes;
     }
 
-    public Object casoTres(int vPasos,int pasosTot,ListaSimple coInicial,Object coImp,Object clienteAtendido,ListaSimple ventana,Object clienteEspera){
+    public Object casoTres(int vPasos,ListaSimple coInicial,Object coImp,Object clienteAtendido,ListaSimple ventana,Object clienteEspera){
         int Contador=0;
         while(Contador<vPasos){
             funcInternas func= new funcInternas();
-            Object[] arrayDev=func.ingrearVentanaImg(ventana,coInicial);
+            Object[] arrayIngresoVentana=func.ingresarVentanaImg(ventana,coInicial);//DEVULVE ventana,*/
+                ventana=(ListaSimple)arrayIngresoVentana[0];
+                coInicial= (ListaSimple)arrayIngresoVentana[1];
+            func.
             Contador+=1;
             
         }
