@@ -7,9 +7,9 @@ public class NodoS {
         NodoS ant;//-X
         NodoS pZ;//+ Z
         public void setSiguiente(NodoS sig){
-            this.sig=this;
+                this.sig=sig;
         } 
-        public void setAnterior(NodoS sig) {
-                this.sig = this;
+        public void setAnterior(NodoS ant) {
+                this.ant = ant;
         }
 }

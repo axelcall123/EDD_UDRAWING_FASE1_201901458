@@ -2,6 +2,7 @@ package funcionalidad;
 
 import NodosListas.*;
 import Principal.*;
+import java.lang.Math;
 ////
 import java.io.File;
 import java.io.FileReader;
@@ -92,14 +93,37 @@ public class opMenu {
         return clientes;
     }
 
-    public Object casoTres(int vPasos,ListaSimple coInicial,Object coImp,Object clienteAtendido,ListaSimple ventana,Object clienteEspera){
+    public Object casoTres(int vPasos,ListaSimple coInicial,ListaSimple impresoraC,ListaSimple impresoraBN,ListaSimpleCircular clienteAtendido,ListaSimple ventana,ListasListas clienteEspera){
         int Contador=0;
         while(Contador<vPasos){
+            int range = (3 - 0) + 1;
+            int ramdon=(int) (Math.random() * range) + 0;
             funcInternas func= new funcInternas();
             Object[] arrayIngresoVentana=func.ingresarVentanaImg(ventana,coInicial);//DEVULVE ventana,*/
                 ventana=(ListaSimple)arrayIngresoVentana[0];
                 coInicial= (ListaSimple)arrayIngresoVentana[1];
-            func.
+            // 0    1       2   3   4    {5,6}
+            // ID NOMBRE COLOR BN PASOS {C,BN}
+            for (int i = 0; i < ventana.length(); i++) {//SOLO PASO LA CLIENTES ESPERA IMPRESORAS BALNCONEGRO Y COLOR
+                if(ventana.verPosicion(i).toString()!="Vacia"){//PAR QUE NO DE ERROR EN ARRAY
+                    String[] window = (String[]) ventana.verPosicion(i);
+                    // SI cantidad imgs==ingresadas
+                    if (Integer.parseInt(window[2])== Integer.parseInt(window[5])  && Integer.parseInt(window[3])== Integer.parseInt(window[6])) {
+                        // ID NOMBRE PASOS
+                        String[] clientesEnEspera = { window[0], window[1], window[4],"F"};//F SIRVE PARA QUE NO DE UNA VEZ DEPUES DE HABER TERMINADO DE PASAR LAS IMAGENES QUE NO DE UNA VEZ EMPIEZO CON LOS CLIENTES
+                        // ID {C,  }#NUMERO COLOR                                                  ID { ,BN}#NUMERO BLANCOnEGRO
+                        String[] impresorasC = { window[0], window[5], "F","2"};String[] impresorasBN = { window[0], window[6],"F","1"};
+                        clienteEspera.insertarLc(clientesEnEspera);
+                        impresoraC.instarFinal(impresorasC);
+                        impresoraBN.instarFinal(impresoraBN);
+                        func.waitImpRe(clienteEspera, impresoraC,impresoraBN);
+                        ventana.sustituirId(i, "Vacia");
+                    }
+                }
+                    
+            }
+                
+            
             Contador+=1;
             
         }

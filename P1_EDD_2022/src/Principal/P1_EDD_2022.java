@@ -12,6 +12,7 @@ public class P1_EDD_2022 {
         Scanner ingresoTeclado = new Scanner(System.in);
         ListaSimple ventanillas = new ListaSimple();
         ListaSimple clientesCola = new ListaSimple();
+        ListasListas clienteEspera= new ListasListas();
         opMenu casosNum = new opMenu();
         // System.out.println(ej.Mostrar_Tablero());
         do {
@@ -20,10 +21,10 @@ public class P1_EDD_2022 {
             System.out.println("******MENU PRINCIPAL******");
             System.out.println("1. PARAMETROS--CARGA MASIVA");
             System.out.println("2. PARAMETROS--CANTIDAD DE VENTANILLAS");
-            System.out.println("3. EJECUTAR PASO");
-            System.out.println("4. ESTADO EN MEMORIA DE LAS ESTRUCTURAS");
-            System.out.println("5. REPORTES");
-            System.out.println("6. ACERCA DEL ESTUDIANTE");
+            System.out.println("3. EJECUTAR PASO");//CONSOLA
+            System.out.println("4. ESTADO EN MEMORIA DE LAS ESTRUCTURAS");//GRAPHVIZ
+            System.out.println("5. REPORTES");//NOSE
+            System.out.println("6. ACERCA DEL ESTUDIANTE");//SHO BOLUDO
             System.out.println("50. SALIDA");
             try {
                 System.out.println("ESCRIBE UNA OPCION");
@@ -67,13 +68,23 @@ public class P1_EDD_2022 {
                     case 10:
                         /*Test ts= new Test();
                         ts.ReadJson();*/
-                        //PASO1
+                        /*//PASO1
                         clientesCola = casosNum.casoUno();
                         //PASO2
                         ventanillas = casosNum.casoDos(3);
                         //PASO3
-                        //vPasos,coInicial,coImp,clienteAtendido,ventana,clienteEspera
-                        casosNum.casoTres(2, clientesCola, null, null, ventanillas, null);
+                        //vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
+                        casosNum.casoTres(3, clientesCola, null, null,null, ventanillas, null);*/
+                        clienteEspera.insertarLc("A");
+                        clienteEspera.insertarLc("B");
+                        clienteEspera.insertarLc("C");
+                        clienteEspera.insertarLc("D");
+                        clienteEspera.insertarLc("E");
+                        clienteEspera.insertarLc("F");
+                        clienteEspera.ver();
+                        clienteEspera.popId(3);
+                        System.out.println("----------------");
+                        clienteEspera.ver();
                         break; 
                     case 50:
                         salida = true;
