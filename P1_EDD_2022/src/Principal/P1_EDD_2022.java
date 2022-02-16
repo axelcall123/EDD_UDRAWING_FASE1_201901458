@@ -10,9 +10,12 @@ public class P1_EDD_2022 {
         int opcion,caso2=0;
         boolean salida = false;
         Scanner ingresoTeclado = new Scanner(System.in);
-        ListaSimple ventanillas = new ListaSimple();
-        ListaSimple clientesCola = new ListaSimple();
+        //LISTA SIMPLES
+        ListaSimple ventanillas=new ListaSimple();ListaSimple clientesCola=new ListaSimple();ListaSimple impC=new ListaSimple();ListaSimple impBn = new ListaSimple();
+        //LISTA LISTA
         ListasListas clienteEspera= new ListasListas();
+        //LISTA CIRCULAR
+        ListaSimpleCircular clienteAtendido=new ListaSimpleCircular();
         opMenu casosNum = new opMenu();
         // System.out.println(ej.Mostrar_Tablero());
         do {
@@ -48,16 +51,27 @@ public class P1_EDD_2022 {
                         ventanillas=casosNum.casoDos(caso2);
                         break;
                     case 3:
-                        // #TODO: a un no programado totalmente
+                        // #TODO:a un no programado totalmente
                         System.out.println("OPCION 3");
                         if(ventanillas==null){
                             System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS");
                         }else{
-                            //casosNum.casoTres(1, 0, clientesCola, null, null, ventanillas, null);
+                            //SOLO FALTA LA CANTIDAD DE*/*/*/*/*
+                            Object[] array=(Object[])casosNum.casoTres(4, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);
+                            //  0        1         2           3           4              5         6
+                            // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
+                            //array[0]=
+                            clientesCola=(ListaSimple)array[1];
+                            impC=(ListaSimple)array[2];
+                            impBn=(ListaSimple)array[3];
+                            clienteAtendido=(ListaSimpleCircular)array[4]=;
+                            ventanillas=(ListaSimple)array[5];
+                            clienteEspera=(ListasListas)array[6];
+
                         }
                         break;
                     case 4:
-                        System.out.println("OPCION 4");
+                        casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
                         break;
                     case 5:
                         System.out.println("OPCION 5");
@@ -68,23 +82,19 @@ public class P1_EDD_2022 {
                     case 10:
                         /*Test ts= new Test();
                         ts.ReadJson();*/
-                        /*//PASO1
-                        clientesCola = casosNum.casoUno();
+                        //PASO1
+                       clientesCola = casosNum.casoUno();
                         //PASO2
                         ventanillas = casosNum.casoDos(3);
                         //PASO3
                         //vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        casosNum.casoTres(3, clientesCola, null, null,null, ventanillas, null);*/
-                        clienteEspera.insertarLc("A");
-                        clienteEspera.insertarLc("B");
-                        clienteEspera.insertarLc("C");
-                        clienteEspera.insertarLc("D");
-                        clienteEspera.insertarLc("E");
-                        clienteEspera.insertarLc("F");
-                        clienteEspera.ver();
-                        clienteEspera.popId(3);
-                        System.out.println("----------------");
-                        clienteEspera.ver();
+                        Object[] array=(Object[])casosNum.casoTres(4, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
+                        clientesCola=(ListaSimple)array[1];
+                        impC=(ListaSimple)array[2];
+                        impBn=(ListaSimple)array[3];
+                        clienteAtendido=(ListaSimpleCircular)array[4]=;
+                        ventanillas=(ListaSimple)array[5];
+                        clienteEspera=(ListasListas)array[6];
                         break; 
                     case 50:
                         salida = true;

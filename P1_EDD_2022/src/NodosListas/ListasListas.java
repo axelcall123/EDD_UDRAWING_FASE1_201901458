@@ -4,10 +4,15 @@ package NodosListas;
 public class ListasListas {
     NodoS lc;
     NodoS primero;
-    int tamaño;
+    int tamañoLc;
     public ListasListas(){
         lc=null;
     }
+
+    public int lengthLc(){
+        return tamañoLc;
+    }
+
 
     public void insertarLc(Object info) {
         NodoS nuevo = new NodoS();
@@ -21,48 +26,52 @@ public class ListasListas {
             lc.sig=nuevo;           
         }
         lc=nuevo;
-        tamaño+=1;
+        tamañoLc+=1;
     }
 
-    public void insertarZ(Object info,Object buscar){
+    public void insertarZ(Object info,int buscar){
         NodoS nuevo = new NodoS();
         nuevo.info=info;
         NodoS aux= new NodoS();
         aux=lc;
         int contador=0;
-        while(buscar!=aux && contador<tamaño){//BUSCAR POR POSICOIN SIG, NO PASE DEL TAMAÑO
+        while(buscar>contador && contador<tamañoLc){//BUSCAR POR POSICOIN SIG, NO PASE DEL TAMAÑO
             aux=aux.sig;
             contador+=1;
         }
-        //TODO: NOTA PUEDE HABER ERROR SI NO SE PONE BIEN
-        if(primero==null){
-            aux.pZ=nuevo;
-        }else{
-            while(aux.pZ!=null){
-                aux=aux.pZ;
+        //FIXME: NOTA PUEDE HABER ERROR SI NO SE PONE BIEN
+        if(tamañoLc!=0){
+            if (primero == null) {
+                aux.pZ = nuevo;
+                primero=nuevo;
+            } else {
+                while (aux.pZ != null) {
+                    aux = aux.pZ;
+                }
+                aux.pZ = nuevo;
             }
-            aux.pZ=nuevo;
         }
+        
     }
 
-    public void ver(){
+    public void verLcSigAnt(){
         int contador=0;
         NodoS aux= new NodoS();
         aux=lc;
-        while(contador<tamaño){
+        while(contador<tamañoLc){
             System.out.println("SIG: "+aux.info);
             aux=aux.sig;
             contador+=1;
         }
         contador = 0;
-        while (contador < tamaño) {
+        while (contador < tamañoLc) {
             System.out.println("ANT: " + aux.info);
             aux = aux.ant;
             contador+=1;
         }
     }
 
-    public void popId(int id){
+    public void elimnarNodo(int id){
         int contador = 0;
         NodoS aux = new NodoS();
         aux = lc;
@@ -76,6 +85,44 @@ public class ListasListas {
             lc=lc.sig;
         }
         aux=null;
-        tamaño--;
+        tamañoLc--;
     }
+
+    public Object verPosicionLc(int posicion){
+        NodoS aux = new NodoS();
+        aux = lc;
+        int contador = 0;
+        while (contador < posicion && contador <= tamañoLc) {
+            aux = aux.sig;
+            contador += 1;
+        }
+        return aux.info;
+    }
+
+    public int cantNodosInsertZ(int posicion){
+        NodoS aux = new NodoS();
+        aux = lc;
+        int tamaño=0;
+        for (int i=0;i<posicion;i++) {// BUSCAR
+            aux = aux.sig;
+        }
+        while(aux.pZ!= null){
+            aux = aux.pZ;
+            tamaño++;
+        }
+        return tamaño;
+    }
+
+    public void sustituirIdLc(int posicion, Object info) {// BUSCA Y SUSTITUYE AL MISMO TIEMPO
+        NodoS aux = new NodoS();
+        aux = lc;
+        int contador = 0;
+        while (contador < posicion) {// VEO LA POSICION
+            aux = aux.sig;
+            contador += 1;
+        }
+        aux.info = info;// LE TRASLADO NUEVA INFORMACION
+    }
+
+
 }

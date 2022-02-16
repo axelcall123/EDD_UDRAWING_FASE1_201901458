@@ -7,9 +7,11 @@ public class ListaSimple {
     public ListaSimple() {
         primero = null;
     }
-   public int length(){
+   
+    public int length(){
        return tamaño;
    }
+
     public void instarFinal(Object info){
         NodoS nuevo = new NodoS();
         nuevo.info = info;

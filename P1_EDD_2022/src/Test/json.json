@@ -8,13 +8,13 @@
     "Cliente2": {
         "id_cliente": "2",
         "nombre_cliente": "Juan Perez",
-        "img_color": "2",
+        "img_color": "90",
         "img_bw": "0"
     },
     "Cliente3": {
         "id_cliente": "3",
         "nombre_cliente": "Luiz Higueros",
-        "img_color": "0",
-        "img_bw": "2"
+        "img_color": "45",
+        "img_bw": "45"
     }
 }

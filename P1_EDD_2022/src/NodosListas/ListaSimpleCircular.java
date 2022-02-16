@@ -3,8 +3,12 @@ package NodosListas;
 
 public class ListaSimpleCircular {
     NodoS lc;
+    int tamaño;
     public ListaSimpleCircular(){
         lc=null;
+    }
+    public int length(){
+        return tamaño;
     }
     public void insertar(Object info){
         NodoS nuevo=new NodoS();
@@ -12,6 +16,7 @@ public class ListaSimpleCircular {
         if(this.lc!=null){
             nuevo.sig=lc.sig;
             lc.sig=nuevo;
+            tamaño++;
         }
         lc=nuevo;
     }
