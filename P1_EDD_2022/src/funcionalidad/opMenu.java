@@ -104,7 +104,6 @@ public class opMenu {
             Object[] arrayAyuda=func.ingresarVentanaImg(ventana,coInicial);//DEVULVE ventana,*/
                 ventana=(ListaSimple)arrayAyuda[0];
                 coInicial= (ListaSimple)arrayAyuda[1];
-            // 0    1       2   3   4    {5,6} 7   8
             // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
             for (int i = 0; i < ventana.length(); i++) {//SOLO PASO LA CLIENTES ESPERA IMPRESORAS BALNCONEGRO Y COLOR
                 if(ventana.verPosicion(i).toString()!="Vacia"){//PAR QUE NO DE ERROR EN ARRAY
@@ -118,7 +117,6 @@ public class opMenu {
                             int contador=1+Integer.parseInt(window[4]);
                             window[4]=String.valueOf(contador);
                             System.out.print(window[1]+" INGRESANDO A COLA DE ESPERA CON SUS IMAGENES");
-                            //  0   1      2    3   4      5          6
                             // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
                             String[] clientesEnEspera = { window[0], window[1], window[2], window[3], window[4],"F" ,window[8]};  // F SIRVE PARA QUE NO
                                                                                                                         // DE UNA VEZ DEPUES DE
@@ -128,8 +126,10 @@ public class opMenu {
                                                                                                                         // EMPIEZO CON LOS
                                                                                                                         // CLIENTES
                             // ID numeroIMGS puedeSEGUIR PASOS
-                            String[] impresorasC = { window[0], window[5], "F", "2" };
-                            String[] impresorasBN = { window[0], window[6], "F", "1" };
+                            //FIXME:ant->String[] impresorasC|BN = { window[0], window[5], "F", "2" };
+                            //FIXME:verificar si esta vacio
+                            String[] impresorasC = { window[0], window[5], "2" };
+                            String[] impresorasBN = { window[0], window[6], "1" };
                             clienteEspera.insertarLc(clientesEnEspera);
                             impresoraC.instarFinal(impresorasC);
                             impresoraBN.instarFinal(impresorasBN);
@@ -157,33 +157,131 @@ public class opMenu {
         // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
         StringBuffer strAux1 = new StringBuffer();
         StringBuffer strAux2 = new StringBuffer();
-        strAux1.append("digraph{\"");
-        for(int i=0;i<ventana.length();i++){
-            if(ventana.verPosicion(i)=="Vacia"){
-                strAux2.append("V" + (i + 1) + " [label=\"]" + "Vacia "+"\"]");
-            }else{
-                //0    1     2     3   4   5  6 7  8
-                //ID NOMBRE COLOR BN PASOS C,BN F VENTANILLA
-                //TODO:ventana
-                String[] aux=(String[])ventana.verPosicion(i);
-                String adentro=aux[1]+"\n"+"Color: "+aux[2]+"\n"+"Blanco y Negro: "+aux[4];
-                strAux2.append("V" + (i + 1) + " [label=\"]" +  adentro+ "\"]");
+        StringBuffer strAux3 = new StringBuffer();
+        // -----------------------------------------------------------------------------------------------
+        strAux1.append("digraph{\n");
+        if(ventana.length()!=0){
+            for (int i = 0; i < ventana.length(); i++) {
+                if (ventana.verPosicion(i) == "Vacia") {
+                    strAux2.append("V" + (i + 1) + " [label=\"" + "Vacia " + "\"]\n");
+                } else {
+                    // ID NOMBRE COLOR BN PASOS C,BN F VENTANILLA
+                    // TODO:ventana
+                    String[] aux = (String[]) ventana.verPosicion(i);
+                    String adentro = aux[1] + "\n" + "Color: " + aux[5] + "::" + "Blanco y Negro: " + aux[6];
+                    if (i != ventana.length() - 1) {
+                        strAux2.append("V" + (i + 1) + " [label=\"" + adentro + "\"]\n");
+                    }
+                }
+                
             }
-            if(i!=ventana.length()-1){
-                strAux2.append("V" + (i + 1) + "->" + "V" + (i + 2));
+        }    
+        strAux1.append(strAux2.toString());
+        strAux1.append(strAux3.toString());
+        strAux1.append("}");
+        String ventanaStr= strAux1.toString();
+        //ELIMINO TODO AUX
+        strAux1.delete(0,strAux1.length());
+        strAux2.delete(0,strAux2.length());
+        strAux3.delete(0, strAux3.length());
+        //strAux1.append("str");
+        //System.out.println(strAux1+"->::"+ strAux2 + "->::"+ strAux3 + "->::");
+        //TERMINO LAS VENTANAS
+        //-----------------------------------------------------------------------------------------------
+        StringBuffer strAux4 = new StringBuffer();
+        StringBuffer strAux5 = new StringBuffer();
+        StringBuffer strAux6 = new StringBuffer();
+        strAux1.append("digraph{\n");
+        if(clienteEspera.lengthLc()!=0){
+            for (int i = 0; i < ventana.length(); i++) {//OBTENGO EL E1[label=""]
+                String[] aux = (String[]) clienteEspera.verPosicionLc(i);
+                // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+                // TODO:cEspera
+                String adentro1=aux[2];
+                strAux2.append("E" + (i + 1) + " [label=\"" + adentro1 + "\"]\n");
+                int tamañoZ=clienteEspera.cantNodosInsertZ(i);
+                for(int j=0;j<tamañoZ;j++){ //OBTENGO EL E11[LABEL=""]
+                    String adentro2=(String) clienteEspera.verPosicionZ(i, j);
+                    strAux3.append("E" + (i + 1)+(j+1) + " [label=\"" + adentro2 + "\"]\n");
+                    if(j==0){
+                        strAux6.append("E"+(i+1)+":e->"+"E"+(i+1)+(j+1)+":w\n");
+                    }else{
+                        strAux6.append("E" +(i+1)+(j) + ":e->" + "E" + (i + 1) + (j + 1) + ":w\n");
+                    }
+                }
+                if (clienteEspera.lengthLc() - 1 != i) {
+                    strAux4.append("E" + (i + 1) + "->" + "E" + (i + 2) + "\n");//DESDE 1->8 && 2->8
+                    int a= clienteEspera.lengthLc();
+                    strAux5.append("E" + (a - i) + "->" + "E" + (a-1- i) + "\n");//DESDE 8->1
+                }else{
+                    strAux4.append("E" + (i + 1) + "->" + "E" + (1) + "\n");//SOLO 8 && 1
+                    strAux5.append("E" + (8 - i) + "->" + "E" + (clienteEspera.lengthLc()) + "\n");//SOLO 1 && 8
+                }
             }
         }
         strAux1.append(strAux2.toString());
+        strAux1.append(strAux3.toString());
+        strAux1.append(strAux4.toString());
+        strAux1.append(strAux5.toString());
+        strAux1.append(strAux6.toString());
         strAux1.append("}");
-
-
-        String ventanaStr= strAux1.toString();
-        //TERMINO LAS VENTANAS
-        if(clienteEspera.lengthLc()!=0){
+        String clienteEsperando = strAux1.toString();
+        // ELIMINO TODO AUX
+        strAux1.delete(0, strAux1.length());
+        strAux2.delete(0, strAux2.length());
+        strAux3.delete(0, strAux3.length());
+        // -----------------------------------------------------------------------------------------------
+        strAux1.append("digraph{\n");
+        if(clienteAtendido.length()!=0){
+            for (int i = 0; i < clienteAtendido.length(); i++) {
+                String[] aux = (String[]) clienteAtendido.verPosicion(i);
+                //ID NOMBRE COLOR BN PASOS VENTANILLA
+                //TODO:Atendido
+                String adentro = aux[1] + "\n" + "Color: " + aux[2] + "::" + "Blanco y Negro: " + aux[3]+"\n"+"Pasos: "+aux[4]+"::Atendido V"+aux[5];
+                strAux2.append("C" + (i + 1) + " [label=\"" + adentro + "\"]\n");
+                if (i != clienteAtendido.length() - 1) {
+                    strAux3.append("C" + (i + 1) + "->" + "C" + (i + 2) + "\n");
+                }else{
+                    strAux3.append("C" + (i + 1) + "->" + "C" + (1) + "\n");
+                }
+            }
             
         }
-        if(clienteAtendido.length()!=0){
+        strAux1.append(strAux2.toString());
+        strAux1.append(strAux3.toString());
+        strAux1.append("}");
+        String clienteAtenStr = strAux1.toString();
+    }
 
+    public void casoCinco(ListaSimple ventana,ListasListas cEspera, ListaSimpleCircular cAtendido){
+        ListaSimple cincoC = new ListaSimple();
+        ListaSimple cincoBN = new ListaSimple();
+        /*RECOPILANDO COLOR BLANCO Y NEGRO*/
+        for(int i=0;i<ventana.length();i++){
+            String[] cC=(String[])ventana.verPosicion(i);
+            // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
+            String[] arrayC={cC[1],cC[2]};
+            String[] arrayBN = { cC[1], cC[3] };
+            cincoC.instarInicio(arrayC);
+            cincoBN.instarInicio(arrayBN);
         }
+        for (int i = 0; i < cEspera.lengthLc(); i++) {
+            String[] cC = (String[]) cEspera.verPosicionLc(i);
+            // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+            String[] arrayC = { cC[1], cC[2] };
+            String[] arrayBN = { cC[1], cC[3] };
+            cincoC.instarInicio(arrayC);
+            cincoBN.instarInicio(arrayBN);
+        }
+        for (int i = 0; i < cAtendido.length(); i++) {
+            String[] cC = (String[]) cAtendido.verPosicion(i);
+            // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+            String[] arrayC = { cC[1], cC[2] };
+            String[] arrayBN = { cC[1], cC[3] };
+            cincoC.instarInicio(arrayC);
+            cincoBN.instarInicio(arrayBN);
+        }
+
+        
     }
 }

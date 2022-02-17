@@ -13,7 +13,6 @@ public class ListasListas {
         return tamañoLc;
     }
 
-
     public void insertarLc(Object info) {
         NodoS nuevo = new NodoS();
         nuevo.info = info;
@@ -35,7 +34,7 @@ public class ListasListas {
         NodoS aux= new NodoS();
         aux=lc;
         int contador=0;
-        while(buscar>contador && contador<tamañoLc){//BUSCAR POR POSICOIN SIG, NO PASE DEL TAMAÑO
+        while(buscar>contador /*&& contador<tamañoLc*/){//BUSCAR POR POSICOIN SIG, NO PASE DEL TAMAÑO
             aux=aux.sig;
             contador+=1;
         }
@@ -54,29 +53,12 @@ public class ListasListas {
         
     }
 
-    public void verLcSigAnt(){
-        int contador=0;
-        NodoS aux= new NodoS();
-        aux=lc;
-        while(contador<tamañoLc){
-            System.out.println("SIG: "+aux.info);
-            aux=aux.sig;
-            contador+=1;
-        }
-        contador = 0;
-        while (contador < tamañoLc) {
-            System.out.println("ANT: " + aux.info);
-            aux = aux.ant;
-            contador+=1;
-        }
-    }
-
     public void elimnarNodo(int id){
         int contador = 0;
         NodoS aux = new NodoS();
         aux = lc;
         while(contador<id){
-            aux = aux.ant;
+            aux = aux.sig;
             contador += 1;
         }
         aux.ant.sig=aux.sig;
@@ -92,14 +74,14 @@ public class ListasListas {
         NodoS aux = new NodoS();
         aux = lc;
         int contador = 0;
-        while (contador < posicion && contador <= tamañoLc) {
+        while (contador < posicion /*&& contador <= tamañoLc*/) {
             aux = aux.sig;
             contador += 1;
         }
         return aux.info;
     }
 
-    public int cantNodosInsertZ(int posicion){
+    public int cantNodosInsertZ(int posicion){//
         NodoS aux = new NodoS();
         aux = lc;
         int tamaño=0;
@@ -122,6 +104,35 @@ public class ListasListas {
             contador += 1;
         }
         aux.info = info;// LE TRASLADO NUEVA INFORMACION
+    }
+
+    public Object verPosicionZ(int pLc,int pZ){//RETORNA IMAGENES
+        NodoS aux = new NodoS();
+        aux = lc;
+        for (int i = 0; i < pLc; i++) {// BUSCAR
+            aux = aux.sig;
+        }
+        while (aux.pZ != null) {
+            aux = aux.pZ;
+        }
+        return aux.info;
+    }
+    /*NO SIRVE SOL TEST */
+    public void verLcSigAnt(){
+        int contador = 0;
+        NodoS aux = new NodoS();
+        aux = lc;
+        while (contador < tamañoLc) {
+            System.out.println("SIG: " + aux.info);
+            aux = aux.sig;
+            contador += 1;
+        }
+        contador = 0;
+        while (contador < tamañoLc) {
+            System.out.println("ANT: " + aux.info);
+            aux = aux.ant;
+            contador += 1;
+        }
     }
 
 

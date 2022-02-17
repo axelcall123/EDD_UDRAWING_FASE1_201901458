@@ -1,0 +1,98 @@
+//VENTANAS
+digraph{
+	//nombre primero orden
+	v1 [label="info1"]
+	v2 [label="info2"]
+	v3 [label="info3"]
+	v1 -> v2
+	v2 -> v3//0 hasta tamaño-1
+}
+//CLIENTES ATENDIDOS
+// SI
+digraph{
+    //nombrar todos
+	C1 [label="C1"]
+	C2 [label="C2"]
+	C3 [label="C3"]
+	C4 [label="C4"]
+	C5 [label="C5"]
+
+	C1->C2//0 hasta tamaño 
+	C2->C3
+	C3->C4
+	C4->C5
+	C5->C1//if ultima posicion 
+	
+}
+
+
+// CLIENTES EN ESPERA
+digraph{
+	//nombro a todos
+	C1 [label="C1"]
+	C2 [label="C2"]
+	C3 [label="C3"]
+	C5 [label="C4"]
+	C6 [label="C5"]
+	C7 [label="C6"]
+	C8 [label="C7"]
+
+	//a la vez obtengo imgs con su posicion i+j
+	C11 [label="img"]
+	C12 [label="img"]
+
+	C21 [label="img"]
+	C22 [label="img"]
+
+	C31 [label="img"]
+	C32 [label="img"]
+
+	C41 [label="img"]
+	C42 [label="img"]
+
+	C51 [label="img"]
+	C52 [label="img"]
+
+	C61 [label="img"]
+	C62 [label="img"]
+   
+	C1->C2//0 hasta tamaño
+	C2->C3
+	C3->C4
+	C4->C5
+	C5->C6
+	C6->C7
+	C7->C8
+	C8->C1//if ultima posicion
+	
+	C8->C7//0 hasta tamaño tam-i
+	C7->C6
+	C6->C5
+	C5->C4
+	C4->C3
+	C3->C2
+	C2->C1
+	C1->C8//if ultima posicion
+	
+	//inicio es dif:: for tamaño -1
+	C1:e->C11:w//INICIO
+	C11:e->C12:w
+
+	C2:e->C21:w
+	C21:e->C22:w
+
+	C3:e->C31:w
+	C31:e->C32:w
+
+	C4:e->C41:w
+	C41:e->C42:w
+
+	C5:e->C51:w
+	C51:e->C52:w
+
+	C6:e->C61:w
+	C61:e->C62:w
+
+	C7:e->C71:w
+	C71:e->C72:w
+}

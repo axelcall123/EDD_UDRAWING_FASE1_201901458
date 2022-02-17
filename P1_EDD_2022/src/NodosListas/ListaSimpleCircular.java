@@ -21,4 +21,16 @@ public class ListaSimpleCircular {
         lc=nuevo;
     }
     
+    public Object verPosicion(int posicion) {
+        NodoS aux = new NodoS();
+        aux = lc;
+        int contador = 0;
+        while (contador < posicion) {
+            aux = aux.sig;
+            contador += 1;
+        }
+        // System.out.println("TIPO1: "+aux.info.getClass());
+        return aux.info;
+    }
+    
 }

@@ -33,7 +33,7 @@ public class P1_EDD_2022 {
                 System.out.println("ESCRIBE UNA OPCION");
                 opcion = ingresoTeclado.nextInt();/// VARIABLE DE LA OPCION DEL MENU
                 switch (opcion) {
-                    case 1:
+                    case 1://PARAMETROS--CARGA MASIVA
                         System.out.println("OPCION 1");              
                         clientesCola=casosNum.casoUno();
                         /*clientesCola.verTodo();
@@ -44,27 +44,29 @@ public class P1_EDD_2022 {
                         }*/
                         //ventanillas.ver();
                         break;
-                    case 2:
+                    case 2://PARAMETROS--CANTIDAD DE VENTANILLA
                         System.out.println("ELIGA LAS CANTIDAD DE VENTANILLAS DISPONIBLE");
                         Scanner ingresoOp2 = new Scanner(System.in);
                         caso2 = ingresoOp2.nextInt();
                         ventanillas=casosNum.casoDos(caso2);
                         break;
-                    case 3:
-                        // #TODO:a un no programado totalmente
+                    case 3://EJECUTAR PASO
+                        // #FIXME:a un no programado totalmente
                         System.out.println("OPCION 3");
                         if(ventanillas==null){
                             System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS");
                         }else{
                             //SOLO FALTA LA CANTIDAD DE*/*/*/*/*
-                            Object[] array=(Object[])casosNum.casoTres(4, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);
+                            System.out.println("ELIGA LAS CANTIDAD DE PASOS A EJECUTAR");
+                            ingresoOp2 = new Scanner(System.in);
+                            int caso3 = ingresoOp2.nextInt();
+                            Object[] array=(Object[])casosNum.casoTres(caso3, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);
                             //  0        1         2           3           4              5         6
                             // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                            //array[0]=
                             clientesCola=(ListaSimple)array[1];
                             impC=(ListaSimple)array[2];
                             impBn=(ListaSimple)array[3];
-                            clienteAtendido=(ListaSimpleCircular)array[4]=;
+                            clienteAtendido=(ListaSimpleCircular)array[4];
                             ventanillas=(ListaSimple)array[5];
                             clienteEspera=(ListasListas)array[6];
 
@@ -73,28 +75,40 @@ public class P1_EDD_2022 {
                     case 4:
                         casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
                         break;
-                    case 5:
-                        System.out.println("OPCION 5");
+                    case 5://REPORTES
+                        casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
                         break;
                     case 6:
-                        System.out.println("OPCION 6");
+                        System.out.println("AXEL CALDERON 201901458 EDD");
                         break;
                     case 10:
                         /*Test ts= new Test();
                         ts.ReadJson();*/
                         //PASO1
-                       clientesCola = casosNum.casoUno();
+                        clientesCola = casosNum.casoUno();
                         //PASO2
                         ventanillas = casosNum.casoDos(3);
                         //PASO3
-                        //vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        Object[] array=(Object[])casosNum.casoTres(4, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
+                        // 0        1           2       3                4             5          6       
+                        // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
+                        Object[] array=(Object[])casosNum.casoTres(2, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
                         clientesCola=(ListaSimple)array[1];
                         impC=(ListaSimple)array[2];
                         impBn=(ListaSimple)array[3];
-                        clienteAtendido=(ListaSimpleCircular)array[4]=;
+                        clienteAtendido=(ListaSimpleCircular)array[4];
                         ventanillas=(ListaSimple)array[5];
                         clienteEspera=(ListasListas)array[6];
+                        //PASO4
+                        casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
+
+                        /*clienteEspera.insertarLc("A");//1
+                        clienteEspera.insertarLc("B");//2
+                        clienteEspera.insertarLc("C");//0
+                        clienteEspera.verLcSigAnt();
+                        clienteEspera.insertarZ("B1", 2);
+                        clienteEspera.insertarZ("B2", 2);
+                        clienteEspera.elimnarNodo(2);
+                        clienteEspera.verLcSigAnt();*/
                         break; 
                     case 50:
                         salida = true;
