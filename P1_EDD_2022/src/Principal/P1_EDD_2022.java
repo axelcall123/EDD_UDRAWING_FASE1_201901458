@@ -5,8 +5,9 @@ import java.util.*;
 import Test.Test;
 import NodosListas.*;
 import funcionalidad.opMenu;
+import java.io.IOException;
 public class P1_EDD_2022 {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         int opcion,caso2=0;
         boolean salida = false;
         Scanner ingresoTeclado = new Scanner(System.in);
@@ -91,7 +92,7 @@ public class P1_EDD_2022 {
                         //PASO3
                         // 0        1           2       3                4             5          6       
                         // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        Object[] array=(Object[])casosNum.casoTres(2, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
+                        Object[] array=(Object[])casosNum.casoTres(10, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
                         clientesCola=(ListaSimple)array[1];
                         impC=(ListaSimple)array[2];
                         impBn=(ListaSimple)array[3];
@@ -100,7 +101,6 @@ public class P1_EDD_2022 {
                         clienteEspera=(ListasListas)array[6];
                         //PASO4
                         casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
-
                         /*clienteEspera.insertarLc("A");//1
                         clienteEspera.insertarLc("B");//2
                         clienteEspera.insertarLc("C");//0

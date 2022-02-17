@@ -1,0 +1,16 @@
+digraph{
+subgraph ventana {
+V1 [label="Jandres Lopez
+Color: 1::Blanco y Negro: 1"]
+V2 [label="Juan Perez
+Color: 1::Blanco y Negro: 0"]
+V3 [label="Luiz Higueros
+Color: 0::Blanco y Negro: 0"]
+V1->V2
+V2->V3
+}
+subgraph cEspera {
+}
+subgraph cAtendido {
+}
+}

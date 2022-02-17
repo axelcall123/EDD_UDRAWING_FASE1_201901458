@@ -69,7 +69,7 @@ public class ListaSimple {
             return null;
         }else{
            primero=primero.sig;//MUEVO EL PUNTERO
-           tamaño--;
+           tamaño+=-1;
            return aux;
         }   
     }

@@ -1,6 +1,7 @@
 package funcionalidad;
 import NodosListas.*;
 public class funcInternas {
+
     public Object[] ingresarVentanaImg(ListaSimple ventana,ListaSimple coInicial){
         //          0     1  2   3         4
         //ocInici->COLOR ID BN NOMBRE:->PASOS(num) 
@@ -12,20 +13,28 @@ public class funcInternas {
             if(ventana.verPosicion(i).toString()=="Vacia" && soloUnCliente==0){//ventana=D INGRESAR INFO
                 //System.out.println("$>VENTANILLA DISPONIBLE");
                 //coInicial.verTodo();
-                String[] clienteInicioFila=(String[])coInicial.pop().verPosicion(0);// RETURN PRIMER CLIENTE CON LA .info
-                if(Integer.parseInt(clienteInicioFila[4])<=0){//OBTENGO LA INFORMACION TOTAL DEL CLIENTE: PRIMER PASO
-                    System.out.println("$>INGRESNADO DATOS DE "+ clienteInicioFila[3]+ " EN LA VENTANA "+String.valueOf(i+1));
-                    //0    1     2     3   4   5  6 7  8
-                    //ID NOMBRE COLOR BN PASOS C,BN F VENTANILLA
-                    //TODO:ventana
-                    int aumentarPaso = 1 + Integer.parseInt(clienteInicioFila[4]);
-                    //SE AGREGO F[7] PARA QUE NO TENGA QUE PASAR INMEDIATAMENTE AL SIGUIENTE PASO
-                String[] clienteVentana={clienteInicioFila[1],clienteInicioFila[3],clienteInicioFila[0],clienteInicioFila[2],String.valueOf(aumentarPaso),"0","0","F",String.valueOf(i + 1)};
-                    ventana.sustituirId(i,clienteVentana);
-                    //ventana.verTodo();
-                    array[0]=ventana;array[1]=coInicial;
-                   // return array;
-                   soloUnCliente = 1;//SOLO PUEDE INGRESAR UNO A UNO EN UN PASO
+                if(coInicial.length()!=0){//EVITAR SI NO HAY CLIENTES EN COLA
+                    String[] clienteInicioFila = (String[]) coInicial.pop().verPosicion(0);// RETURN PRIMER CLIENTE CON
+                                                                                           // LA .info
+                    if (Integer.parseInt(clienteInicioFila[4]) <= 0) {// OBTENGO LA INFORMACION TOTAL DEL CLIENTE:
+                                                                      // PRIMER PASO
+                        System.out.println("$>INGRESNADO DATOS DE " + clienteInicioFila[3] + " EN LA VENTANA "
+                                + String.valueOf(i + 1));
+                        // 0 1 2 3 4 5 6 7 8
+                        // ID NOMBRE COLOR BN PASOS C,BN F VENTANILLA
+                        // TODO:ventana
+                        int aumentarPaso = 1 + Integer.parseInt(clienteInicioFila[4]);
+                        // SE AGREGO F[7] PARA QUE NO TENGA QUE PASAR INMEDIATAMENTE AL SIGUIENTE PASO
+                        String[] clienteVentana = { clienteInicioFila[1], clienteInicioFila[3], clienteInicioFila[0],
+                                clienteInicioFila[2], String.valueOf(aumentarPaso), "0", "0", "F",
+                                String.valueOf(i + 1) };
+                        ventana.sustituirId(i, clienteVentana);
+                        // ventana.verTodo();
+                        array[0] = ventana;
+                        array[1] = coInicial;
+                        // return array;
+                        soloUnCliente = 1;// SOLO PUEDE INGRESAR UNO A UNO EN UN PASO
+                    }
                 }
             }else if(ventana.verPosicion(i).toString() != "Vacia"){//INGRESAR IMG
                 //0    1      2    3   4    {5,6}  7   8
@@ -81,138 +90,74 @@ public class funcInternas {
         //TODO:cEspera
 
         //int contadorPaso=1;//SOLO UNA VEZ PUEDE SER UN PASO
-        if (clienteEspera.lengthLc() != 0) {
-            for (int i = 0; i < clienteEspera.lengthLc(); i++) {
-                String[] cE = (String[]) clienteEspera.verPosicionLc(i);
-                int cantImg = clienteEspera.cantNodosInsertZ(i);
-                if (cantImg == Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR                                                            // ID IGUALES
-                    if (cE[5] == "F") {//
-                        cE[5] = "IMP";
-                        clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
-                    } else {// CLIENTES YA ATENDIDOS
-                        //NEW
-                        if(color.length()!=0){
-                            String[] impC;
-                            int pasosC;
-                            impC = (String[]) color.verPosicion(0);
-                            pasosC = Integer.parseInt(impC[2]) - 1;
-                            if (pasosC == 0) {// VEO SI SE ACABO LOS 2 PASOS
-                                if (impC[0] == cE[0]) {// ID==
-                                    System.out.println(cE[1] + " SE IMPRIMIO LA IMG A COLOR DE " + cE[1]);
-                                    clienteEspera.insertarZ("COLOR", i);
-                                    color.pop();
-                                }
-                            } else {// SUSTITUIR CON -1 PASO
-                                impC[2] = String.valueOf(pasosC);
-                                color.sustituirId(i, impC);
-                            }
+    if (clienteEspera.lengthLc() != 0) {
+        for (int i = 0; i < clienteEspera.lengthLc(); i++) {
+            String[] cE = (String[]) clienteEspera.verPosicionLc(i);                                               
+            if (cE[5] == "F") {//
+                cE[5] = "IMP";
+                int countP= 1 + Integer.parseInt(cE[4]);
+                cE[4]= String.valueOf(countP);
+                clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
+            } else {// CLIENTES YA ATENDIDOS
+                //NEW
+                if (color.length() != 0 | blancoNegro.length() != 0) {// CONTAR BIEN LOS PASOS XD
+                    int countP = 1 + Integer.parseInt(cE[4]);
+                    cE[4] = String.valueOf(countP);
+                    clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
+                }
+
+                if(color.length()!=0){
+                    String[] impC = (String[]) color.verPosicion(0);
+                    int pasosC = Integer.parseInt(impC[2]) - 1;
+                    if (pasosC == 0) {// VEO SI SE ACABO LOS 2 PASOS
+                        if (impC[0] == cE[0]) {// ID==
+                            System.out.println(cE[1] + " SE IMPRIMIO LA IMG A COLOR DE " + cE[1]);
+                            clienteEspera.insertarZ("COLOR", i);
+                            color.pop();
                         }
-                        if ( blancoNegro.length() != 0) {
-                            String[] impBn;
-                            int pasosBn;
-                            impBn = (String[]) blancoNegro.verPosicion(0);
-                            pasosBn = Integer.parseInt(impBn[2]) - 1; 
-                            if (pasosBn == 0) {// VEO SI SE ACABO EL PRIMER PASO
-                                if (impBn[0] == cE[0]) {// ID==
-                                    System.out.println(cE[1] + " SE IMPRIMIO LA IMG A BLANCO Y NEGRO DE " + cE[1]);
-                                    clienteEspera.insertarZ("BN", i);
-                                    blancoNegro.pop();
-                                }
-                            }
-                        }       
-                        //OLD
-                        if(cantImg==Integer.parseInt(cE[2]+Integer.parseInt(cE[3]))){
-                            if (cE[5] == "IMP") {//
-                                cE[5] = "LEFT";
-                                clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
-                            }else{
-                                System.out.println(cE[1] + " YA FUE ATENDIDO");
-                                // ID NOMBRE COLOR BN PASOS VENTANILLA
-                                // TODO:cAtendidos
-                                String[] array = { cE[0], cE[1], cE[2], cE[3], cE[4], cE[6] };
-                                // TENGO QUE PONER LA CONDICION
-                                atendidos.insertar(array);
-                                clienteEspera.elimnarNodo(i);
-                            }
-                            
-                        } 
+                    } else {// SUSTITUIR CON -1 PASO
+                        impC[2] = String.valueOf(pasosC);
+                        color.sustituirId(i, impC);
                     }
                 }
-            }
+                if ( blancoNegro.length() != 0) {
+                    String[] impBn = (String[]) blancoNegro.verPosicion(0);
+                    int pasosBn = Integer.parseInt(impBn[2]) - 1; 
+                    if (pasosBn == 0) {// VEO SI SE ACABO EL PRIMER PASO
+                        if (impBn[0] == cE[0]) {// ID==
+                            System.out.println(cE[1] + " SE IMPRIMIO LA IMG A BLANCO Y NEGRO DE " + cE[1]);
+                            clienteEspera.insertarZ("BN", i);
+                            blancoNegro.pop();
+                        }
+                    }
+                }     
+                //OLD
+                int cantImg = clienteEspera.cantNodosInsertZ(i);
+                if (cantImg == Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR
+                    if (cE[5] == "IMP") {//
+                        cE[5] = "LEFT"; 
+                        /*int countP = 1 + Integer.parseInt(cE[4]);
+                        cE[4] = String.valueOf(countP);*/
+                        clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
+                    }else{
+                        System.out.println(cE[1] + " YA FUE ATENDIDO");
+                        // ID NOMBRE COLOR BN PASOS VENTANILLA
+                        // TODO:cAtendidos
+                        int countP = 1 + Integer.parseInt(cE[4]);
+                        cE[4] = String.valueOf(countP);
+                        clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
+                        String[] array = { cE[0], cE[1], cE[2], cE[3], cE[4], cE[6] };
+                        // TENGO QUE PONER LA CONDICION
+                        atendidos.insertar(array);                       
+                        clienteEspera.elimnarNodo(i);
+                    }         
+                } 
+            } 
         }
+    }
 
         Object[] array={clienteEspera,color,blancoNegro,atendidos};
         return array;
     }
 
-
 }
-/*
-        if(color.length()!=0){  
-            String[] impC=(String[])color.verPosicion(0);
-            if(impC[K]=="F"){
-                impC[K]="T";
-                color.sustituirId(0,impC);
-            }else{
-                int pasos=Integer.parseInt(impC[2])-1;
-                if(pasos==0){//YA PUEDE IMPRIMIR LA IMAGEN
-                    for(int i=0;i<clienteEspera.lengthLc();i++){
-                        String[] cE=(String[])clienteEspera.verPosicionLc(i);//TENGO QUE VER SI LAS IMAGANES OBTENIDAS=IMAGENES QUE ENVIE
-                        if(impC[0]==cE[0]){//ENCONTAR ID IGUALES
-                            System.out.println(cE[1]+" SE IMPRIMIO LA IMG A COLOR DE "+cE[1]);
-                            //pasos=1+Integer.parseInt(cE[4]);
-                            //cE[4]=String.valueOf(pasos);
-                            clienteEspera.sustituirIdLc(i, cE);
-                            clienteEspera.insertarZ("COLOR", i);
-                            color.pop();//VER
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if(blancoNegro.length() != 0){
-            String[] impBn=(String[]) blancoNegro.verPosicion(0);
-            if (impBn[K]== "F") {
-                impBn[K]= "T";
-                blancoNegro.sustituirId(0, impBn);
-            } else {
-                int pasos = Integer.parseInt(impBn[2]) - 1;
-                if (pasos == 0) {// YA PUEDE IMPRIMIR LA IMAGEN
-                    for(int i = 0; i < clienteEspera.lengthLc(); i++){
-                        String[] cE = (String[]) clienteEspera.verPosicionLc(i);
-                        if (impBn[0] == cE[0]) {//ENCONTRAR ID IGUALES
-                            System.out.println(cE[1]+" SE IMPRIMIO LA IMG A BLANCO Y NEGRO DE "+cE[1]);
-                            //pasos = 1 + Integer.parseInt(cE[4]);
-                            //cE[4] = String.valueOf(pasos);
-                            clienteEspera.sustituirIdLc(i, cE);
-                            clienteEspera.insertarZ("BN", i);
-                            blancoNegro.pop();//VER
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        // 0     1     2   3    4      5             6
-        // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
-        if(clienteEspera.lengthLc() != 0){
-            for (int i = 0; i < clienteEspera.lengthLc(); i++) {
-                String[] cE = (String[]) clienteEspera.verPosicionLc(i);
-                int cantImg=clienteEspera.cantNodosInsertZ(i);               
-                if ( cantImg== Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR                                                                                  // ID IGUALES
-                    if (cE[5] == "F") {//
-                        cE[5] = "T";
-                        clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
-                    } else {//CLIENTES YA ATENDIDOS
-                        System.out.println(cE[1] + " YA FUE ATENDIDO ");
-                        //ID NOMBRE COLOR BN PASOS VENTANILLA
-                        String[] array = { cE[0],cE[1], cE[2], cE[3], cE[4], cE[6] };
-                        atendidos.insertar(array);
-
-                    }
-                }
-            }
-        }
- */

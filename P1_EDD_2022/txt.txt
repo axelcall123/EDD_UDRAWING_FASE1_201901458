@@ -1,0 +1,68 @@
+
+        if(color.length()!=0){  
+            String[] impC=(String[])color.verPosicion(0);
+            if(impC[K]=="F"){
+                impC[K]="T";
+                color.sustituirId(0,impC);
+            }else{
+                int pasos=Integer.parseInt(impC[2])-1;
+                if(pasos==0){//YA PUEDE IMPRIMIR LA IMAGEN
+                    for(int i=0;i<clienteEspera.lengthLc();i++){
+                        String[] cE=(String[])clienteEspera.verPosicionLc(i);//TENGO QUE VER SI LAS IMAGANES OBTENIDAS=IMAGENES QUE ENVIE
+                        if(impC[0]==cE[0]){//ENCONTAR ID IGUALES
+                            System.out.println(cE[1]+" SE IMPRIMIO LA IMG A COLOR DE "+cE[1]);
+                            //pasos=1+Integer.parseInt(cE[4]);
+                            //cE[4]=String.valueOf(pasos);
+                            clienteEspera.sustituirIdLc(i, cE);
+                            clienteEspera.insertarZ("COLOR", i);
+                            color.pop();//VER
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if(blancoNegro.length() != 0){
+            String[] impBn=(String[]) blancoNegro.verPosicion(0);
+            if (impBn[K]== "F") {
+                impBn[K]= "T";
+                blancoNegro.sustituirId(0, impBn);
+            } else {
+                int pasos = Integer.parseInt(impBn[2]) - 1;
+                if (pasos == 0) {// YA PUEDE IMPRIMIR LA IMAGEN
+                    for(int i = 0; i < clienteEspera.lengthLc(); i++){
+                        String[] cE = (String[]) clienteEspera.verPosicionLc(i);
+                        if (impBn[0] == cE[0]) {//ENCONTRAR ID IGUALES
+                            System.out.println(cE[1]+" SE IMPRIMIO LA IMG A BLANCO Y NEGRO DE "+cE[1]);
+                            //pasos = 1 + Integer.parseInt(cE[4]);
+                            //cE[4] = String.valueOf(pasos);
+                            clienteEspera.sustituirIdLc(i, cE);
+                            clienteEspera.insertarZ("BN", i);
+                            blancoNegro.pop();//VER
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        // 0     1     2   3    4      5             6
+        // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+        if(clienteEspera.lengthLc() != 0){
+            for (int i = 0; i < clienteEspera.lengthLc(); i++) {
+                String[] cE = (String[]) clienteEspera.verPosicionLc(i);
+                int cantImg=clienteEspera.cantNodosInsertZ(i);               
+                if ( cantImg== Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR                                                                                  // ID IGUALES
+                    if (cE[5] == "F") {//
+                        cE[5] = "T";
+                        clienteEspera.sustituirIdLc(i, cE);// SUSTITUCION
+                    } else {//CLIENTES YA ATENDIDOS
+                        System.out.println(cE[1] + " YA FUE ATENDIDO ");
+                        //ID NOMBRE COLOR BN PASOS VENTANILLA
+                        String[] array = { cE[0],cE[1], cE[2], cE[3], cE[4], cE[6] };
+                        atendidos.insertar(array);
+
+                    }
+                }
+            }
+        }

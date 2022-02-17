@@ -66,8 +66,11 @@ public class ListasListas {
         if(aux==lc){
             lc=lc.sig;
         }
+        if(tamañoLc==1){//EVITAR ERRORES
+            lc=null;
+        }
         aux=null;
-        tamañoLc--;
+        tamañoLc+=-1;
     }
 
     public Object verPosicionLc(int posicion){
@@ -111,10 +114,14 @@ public class ListasListas {
         aux = lc;
         for (int i = 0; i < pLc; i++) {// BUSCAR
             aux = aux.sig;
-        }
-        while (aux.pZ != null) {
+        }//NEW
+        for (int i = 0; i < pZ+1; i++) {//EVITAR EL PRIMER TRASLADO STRING[]
             aux = aux.pZ;
         }
+        //OLD
+        /*while (aux.pZ != null) {
+            aux = aux.pZ;
+        }*/
         return aux.info;
     }
     /*NO SIRVE SOL TEST */
