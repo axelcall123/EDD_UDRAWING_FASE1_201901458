@@ -308,13 +308,16 @@ public class opMenu {
         ListaSimple cincoBN = new ListaSimple();
         /*RECOPILANDO COLOR BLANCO Y NEGRO*/
         for(int i=0;i<ventana.length();i++){//AGREGO LOS DE LA VENTANA
-            String[] cC=(String[])ventana.verPosicion(i);
-            // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
-            String[] arrayC={cC[1],cC[2]};
-            String[] arrayBN = { cC[1], cC[3] };
-            cincoC.instarInicio(arrayC);
-            cincoBN.instarInicio(arrayBN);
+            if(ventana.verPosicion(i).toString()!="Vacia"){
+                String[] cC = (String[]) ventana.verPosicion(i);
+                // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
+                String[] arrayC = { cC[1], cC[2] };
+                String[] arrayBN = { cC[1], cC[3] };
+                cincoC.instarInicio(arrayC);
+                cincoBN.instarInicio(arrayBN);
+            }
         }
+        
         for (int i = 0; i < cEspera.lengthLc(); i++) {//AGREGO LOS DE CLIENTES EN ESPERA
             String[] cC = (String[]) cEspera.verPosicionLc(i);
             // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
@@ -381,6 +384,6 @@ public class opMenu {
             String[] ca=(String[])cAtendido.verPosicion(clienteMasId);
             System.out.println("MAS PASOS ESTUVO: "+ca[0]+"->IMAGENES[C;BN] "+ca[2]+";"+ca[3]+" CON "+ca[4]+ " PASOS");
         }
-
+        
     }
 }

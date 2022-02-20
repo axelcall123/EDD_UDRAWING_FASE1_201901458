@@ -1,24 +1,26 @@
 digraph{
 subgraph ventana {
-V1 [label="Polly Rodriguez
-Color: 1::Blanco y Negro: 0"]
-V2 [label="Yang Wiggins
-Color: 0::Blanco y Negro: 0"]
-V3 [label="Carolyn Harmon
-Color: 2::Blanco y Negro: 0"]
+V1 [label="Vacia "]
+V2 [label="Vacia "]
+V3 [label="Shana Burke
+Color: 0::Blanco y Negro: 4"]
 V1->V2
 V2->V3
 }
 subgraph cEspera {
-E1 [label="Evelyn Fitzgerald
-Pasos:4"]
-E1->E1
-E1->E1
+E1 [label="Durham Logan
+Pasos:8"]
+E2 [label="Haley Rosario
+Pasos:7"]
+E1->E2
+E2->E1
+E2->E1
+E1->E2
 }
 subgraph cAtendido {
-C1 [label="Jolene Mccall
-Color: 0::BN: 0
-Pasos: 6::Atendido V2"]
+C1 [label="Noelle Morse
+Color: 0::BN: 1
+Pasos: 7::Atendido V2"]
 C2 [label="Long Meyer
 Color: 3::BN: 0
 Pasos: 9::Atendido V2"]
@@ -43,6 +45,120 @@ Pasos: 8::Atendido V2"]
 C9 [label="Roman Branch
 Color: 3::BN: 2
 Pasos: 11::Atendido V3"]
+C10 [label="Jolene Mccall
+Color: 0::BN: 0
+Pasos: 6::Atendido V2"]
+C11 [label="Evelyn Fitzgerald
+Color: 0::BN: 1
+Pasos: 7::Atendido V1"]
+C12 [label="Carolyn Harmon
+Color: 3::BN: 2
+Pasos: 11::Atendido V3"]
+C13 [label="Yang Wiggins
+Color: 1::BN: 4
+Pasos: 11::Atendido V2"]
+C14 [label="Polly Rodriguez
+Color: 3::BN: 2
+Pasos: 11::Atendido V1"]
+C15 [label="Douglas Dominguez
+Color: 0::BN: 3
+Pasos: 9::Atendido V3"]
+C16 [label="Faith Hopkins
+Color: 1::BN: 3
+Pasos: 10::Atendido V1"]
+C17 [label="Sandy Mason
+Color: 1::BN: 4
+Pasos: 11::Atendido V2"]
+C18 [label="Stefanie Wise
+Color: 1::BN: 0
+Pasos: 7::Atendido V3"]
+C19 [label="Tommie Mcpherson
+Color: 1::BN: 1
+Pasos: 8::Atendido V2"]
+C20 [label="Tabatha Pickett
+Color: 3::BN: 2
+Pasos: 11::Atendido V3"]
+C21 [label="Leach Ross
+Color: 3::BN: 4
+Pasos: 13::Atendido V1"]
+C22 [label="Whitney Clayton
+Color: 0::BN: 4
+Pasos: 10::Atendido V2"]
+C23 [label="Ellison Hood
+Color: 3::BN: 0
+Pasos: 9::Atendido V3"]
+C24 [label="Heidi Lowery
+Color: 4::BN: 2
+Pasos: 12::Atendido V1"]
+C25 [label="Andrews Vance
+Color: 2::BN: 1
+Pasos: 9::Atendido V3"]
+C26 [label="Dixie Howard
+Color: 0::BN: 4
+Pasos: 10::Atendido V2"]
+C27 [label="Mabel Nicholson
+Color: 2::BN: 0
+Pasos: 8::Atendido V2"]
+C28 [label="Maggie Levine
+Color: 4::BN: 2
+Pasos: 12::Atendido V1"]
+C29 [label="Erma Barron
+Color: 1::BN: 4
+Pasos: 11::Atendido V3"]
+C30 [label="Witt Forbes
+Color: 1::BN: 0
+Pasos: 7::Atendido V2"]
+C31 [label="Maddox Frazier
+Color: 1::BN: 1
+Pasos: 8::Atendido V3"]
+C32 [label="Moore Horton
+Color: 0::BN: 4
+Pasos: 10::Atendido V2"]
+C33 [label="Bennett Malone
+Color: 4::BN: 2
+Pasos: 12::Atendido V1"]
+C34 [label="Hatfield Sykes
+Color: 1::BN: 0
+Pasos: 7::Atendido V3"]
+C35 [label="Garza York
+Color: 2::BN: 0
+Pasos: 8::Atendido V2"]
+C36 [label="Macdonald Murray
+Color: 1::BN: 1
+Pasos: 8::Atendido V1"]
+C37 [label="Romero Sanders
+Color: 2::BN: 0
+Pasos: 8::Atendido V2"]
+C38 [label="Etta Blake
+Color: 3::BN: 0
+Pasos: 9::Atendido V3"]
+C39 [label="Washington Dickerson
+Color: 3::BN: 0
+Pasos: 9::Atendido V2"]
+C40 [label="Vicky Jimenez
+Color: 4::BN: 4
+Pasos: 14::Atendido V1"]
+C41 [label="Ethel Cortez
+Color: 3::BN: 2
+Pasos: 11::Atendido V3"]
+C42 [label="Christa Mendoza
+Color: 2::BN: 3
+Pasos: 11::Atendido V2"]
+C43 [label="Alyce Alford
+Color: 3::BN: 0
+Pasos: 9::Atendido V1"]
+C44 [label="Brigitte Wheeler
+Color: 4::BN: 3
+Pasos: 13::Atendido V3"]
+C45 [label="Shannon Johnston
+Color: 0::BN: 0
+Pasos: 6::Atendido V2"]
+C46 [label="Elinor Ford
+Color: 0::BN: 0
+Pasos: 6::Atendido V3"]
+C47 [label="Leigh Bright
+Color: 1::BN: 4
+Pasos: 11::Atendido V1"]
 C1->C2
 C2->C3
 C3->C4
@@ -51,6 +167,44 @@ C5->C6
 C6->C7
 C7->C8
 C8->C9
-C9->C1
+C9->C10
+C10->C11
+C11->C12
+C12->C13
+C13->C14
+C14->C15
+C15->C16
+C16->C17
+C17->C18
+C18->C19
+C19->C20
+C20->C21
+C21->C22
+C22->C23
+C23->C24
+C24->C25
+C25->C26
+C26->C27
+C27->C28
+C28->C29
+C29->C30
+C30->C31
+C31->C32
+C32->C33
+C33->C34
+C34->C35
+C35->C36
+C36->C37
+C37->C38
+C38->C39
+C39->C40
+C40->C41
+C41->C42
+C42->C43
+C43->C44
+C44->C45
+C45->C46
+C46->C47
+C47->C1
 }
 }

@@ -98,7 +98,7 @@ public class P1_EDD_2022 {
                         //PASO3
                         // 0        1           2       3                4             5          6       
                         // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        for(int i=0;i<19;i++){
+                        for(int i=0;i<90;i++){
                             Object[] array = (Object[]) casosNum.casoTres(2, clientesCola, impC, impBn,
                             clienteAtendido, ventanillas, clienteEspera);
                             clientesCola = (ListaSimple) array[1];
@@ -109,7 +109,7 @@ public class P1_EDD_2022 {
                             clienteEspera = (ListasListas) array[6];
                             // PASO4
                             casosNum.casoCuatro(ventanillas, clienteEspera, clienteAtendido);
-                           // casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
+                            casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
                         } 
                         break; 
                     case 15:
