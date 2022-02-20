@@ -7,9 +7,11 @@ public class ListaSimpleCircular {
     public ListaSimpleCircular(){
         lc=null;
     }
+    
     public int length(){
         return tamaño;
     }
+    
     public void insertar(Object info){
         NodoS nuevo=new NodoS();
         //nuevo.setSiguiente((NodoS) info);

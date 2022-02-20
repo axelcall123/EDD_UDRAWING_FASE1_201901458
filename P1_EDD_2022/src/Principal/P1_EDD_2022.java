@@ -7,6 +7,12 @@ import NodosListas.*;
 import funcionalidad.opMenu;
 import java.io.IOException;
 public class P1_EDD_2022 {
+    
+    // COLO INICIAL:--------->COLOR ID BN NOMBRE PASOS
+    // IMPRESORA COLOR|BN:--->ID numeroIMGS PASOS
+    // CLIENTE ATENDIDO:----->ID NOMBRE COLOR BN PASOS VENTANILLA
+    // VENTANAS:------------->ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
+    // CLIETE ESPERA:-------->ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
     public static void main(String[] args) throws IOException{
         int opcion,caso2=0;
         boolean salida = false;
@@ -54,8 +60,8 @@ public class P1_EDD_2022 {
                     case 3://EJECUTAR PASO
                         // #FIXME:a un no programado totalmente
                         System.out.println("OPCION 3");
-                        if(ventanillas==null){
-                            System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS");
+                        if(ventanillas.length()==0 | clientesCola.length()==0){
+                            System.out.println("PARECE QUE NO HA ELEGIDO LA CARGA DE VENTANILLAS O LA CARGA MASIVA");
                         }else{
                             //SOLO FALTA LA CANTIDAD DE*/*/*/*/*
                             System.out.println("ELIGA LAS CANTIDAD DE PASOS A EJECUTAR");
@@ -92,24 +98,22 @@ public class P1_EDD_2022 {
                         //PASO3
                         // 0        1           2       3                4             5          6       
                         // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        Object[] array=(Object[])casosNum.casoTres(10, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);                     
-                        clientesCola=(ListaSimple)array[1];
-                        impC=(ListaSimple)array[2];
-                        impBn=(ListaSimple)array[3];
-                        clienteAtendido=(ListaSimpleCircular)array[4];
-                        ventanillas=(ListaSimple)array[5];
-                        clienteEspera=(ListasListas)array[6];
-                        //PASO4
-                        casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
-                        /*clienteEspera.insertarLc("A");//1
-                        clienteEspera.insertarLc("B");//2
-                        clienteEspera.insertarLc("C");//0
-                        clienteEspera.verLcSigAnt();
-                        clienteEspera.insertarZ("B1", 2);
-                        clienteEspera.insertarZ("B2", 2);
-                        clienteEspera.elimnarNodo(2);
-                        clienteEspera.verLcSigAnt();*/
+                        for(int i=0;i<19;i++){
+                            Object[] array = (Object[]) casosNum.casoTres(2, clientesCola, impC, impBn,
+                            clienteAtendido, ventanillas, clienteEspera);
+                            clientesCola = (ListaSimple) array[1];
+                            impC = (ListaSimple) array[2];
+                            impBn = (ListaSimple) array[3];
+                            clienteAtendido = (ListaSimpleCircular) array[4];
+                            ventanillas = (ListaSimple) array[5];
+                            clienteEspera = (ListasListas) array[6];
+                            // PASO4
+                            casosNum.casoCuatro(ventanillas, clienteEspera, clienteAtendido);
+                           // casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
+                        } 
                         break; 
+                    case 15:
+                        salida = true;
                     case 50:
                         salida = true;
                         break;

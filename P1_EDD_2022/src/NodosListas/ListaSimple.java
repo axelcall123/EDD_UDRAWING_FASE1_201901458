@@ -41,14 +41,6 @@ public class ListaSimple {
         }
     }
     
-    public void verTodo(){
-        NodoS aux=new NodoS();
-        aux=primero;
-        while(aux!=null){
-            System.out.println("TIENE(LS)-> "+aux.info);
-            aux=aux.sig;
-        }
-    }
     
     public Object verPosicion(int posicion) {
         NodoS aux = new NodoS();
@@ -78,10 +70,19 @@ public class ListaSimple {
         NodoS aux = new NodoS();
         aux = primero;
         int contador = 0;
-        while (contador < posicion && contador <= tamaño) {//VEO LA POSICION
+        while (contador < posicion) {//VEO LA POSICION
             aux = aux.sig;
             contador += 1;
         }
         aux.info=info;//LE TRASLADO NUEVA INFORMACION
+    }
+//NO SE UTILIZA
+    public void verTodo() {
+        NodoS aux = new NodoS();
+        aux = primero;
+        while (aux != null) {
+            System.out.println("TIENE(LS)-> " + aux.info);
+            aux = aux.sig;
+        }
     }
 }

@@ -53,7 +53,7 @@ public class ListasListas {
         
     }
 
-    public void elimnarNodo(int id){
+    public void elimnarNodo(int id){//FIXME: nodo
         int contador = 0;
         NodoS aux = new NodoS();
         aux = lc;
@@ -61,15 +61,15 @@ public class ListasListas {
             aux = aux.sig;
             contador += 1;
         }
-        aux.ant.sig=aux.sig;
-        aux.sig.ant=aux.ant;
-        if(aux==lc){
-            lc=lc.sig;
+        if (aux == lc) {
+            lc = lc.sig;
         }
+        aux.ant.sig=aux.sig;
+        aux.sig.ant=aux.ant;      
         if(tamañoLc==1){//EVITAR ERRORES
             lc=null;
-        }
-        aux=null;
+        }    
+        aux=null;//ELIMINAR EL NODO ENMEDIO
         tamañoLc+=-1;
     }
 
@@ -142,5 +142,32 @@ public class ListasListas {
         }
     }
 
-
+    public void verAll(){
+        int contador = 0;
+        NodoS aux1 = new NodoS();
+        NodoS aux2 = new NodoS();
+        aux1 = lc;
+        while (contador < tamañoLc+1) {
+            System.out.println("SIG: " + aux1.info);
+            aux2=aux1;
+            while (aux2.pZ != null) {
+                aux2 = aux2.pZ;
+                System.out.println("-->"+aux2.info);
+            }
+            aux1 = aux1.sig;
+            contador += 1;
+        }
+        contador = 0;
+        aux1 = lc;
+        while (contador < tamañoLc+1) {
+            System.out.println("ANT: " + aux1.info);
+            aux2=aux1;
+            while (aux2.pZ != null) {
+                aux2 = aux2.pZ;
+                System.out.println("-->"+aux2.info);
+            }
+            aux1 = aux1.ant;
+            contador += 1;
+        }
+    }
 }

@@ -1,16 +1,56 @@
 digraph{
 subgraph ventana {
-V1 [label="Jandres Lopez
-Color: 1::Blanco y Negro: 1"]
-V2 [label="Juan Perez
+V1 [label="Polly Rodriguez
 Color: 1::Blanco y Negro: 0"]
-V3 [label="Luiz Higueros
+V2 [label="Yang Wiggins
 Color: 0::Blanco y Negro: 0"]
+V3 [label="Carolyn Harmon
+Color: 2::Blanco y Negro: 0"]
 V1->V2
 V2->V3
 }
 subgraph cEspera {
+E1 [label="Evelyn Fitzgerald
+Pasos:4"]
+E1->E1
+E1->E1
 }
 subgraph cAtendido {
+C1 [label="Jolene Mccall
+Color: 0::BN: 0
+Pasos: 6::Atendido V2"]
+C2 [label="Long Meyer
+Color: 3::BN: 0
+Pasos: 9::Atendido V2"]
+C3 [label="Geraldine Pierce
+Color: 3::BN: 1
+Pasos: 10::Atendido V1"]
+C4 [label="Gay Mcmillan
+Color: 0::BN: 1
+Pasos: 7::Atendido V1"]
+C5 [label="Gutierrez Casey
+Color: 3::BN: 4
+Pasos: 13::Atendido V3"]
+C6 [label="Nola Winters
+Color: 3::BN: 1
+Pasos: 10::Atendido V2"]
+C7 [label="Pruitt Perez
+Color: 4::BN: 2
+Pasos: 12::Atendido V1"]
+C8 [label="Hudson Lancaster
+Color: 1::BN: 1
+Pasos: 8::Atendido V2"]
+C9 [label="Roman Branch
+Color: 3::BN: 2
+Pasos: 11::Atendido V3"]
+C1->C2
+C2->C3
+C3->C4
+C4->C5
+C5->C6
+C6->C7
+C7->C8
+C8->C9
+C9->C1
 }
 }

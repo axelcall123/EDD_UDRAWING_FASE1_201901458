@@ -95,6 +95,14 @@ public class opMenu {
         return clientes;
     }
 
+    //TODAS LAS LISTAS       0        
+    //COLO INICIAL:--------->COLOR ID BN NOMBRE PASOS
+    //IMPRESORA COLOR|BN:--->ID numeroIMGS PASOS
+    //CLIENTE ATENDIDO:----->ID NOMBRE COLOR BN PASOS VENTANILLA
+    //VENTANAS:------------->ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
+    //CLIETE ESPERA:-------->ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+
+
     public Object casoTres(int vPasos,ListaSimple coInicial,ListaSimple impresoraC,ListaSimple impresoraBN,ListaSimpleCircular clienteAtendido,ListaSimple ventana,ListasListas clienteEspera){
         int Contador=0;
         while(Contador<vPasos){
@@ -215,11 +223,11 @@ public class opMenu {
                 int tamañoZ=clienteEspera.cantNodosInsertZ(i);
                 for(int j=0;j<tamañoZ;j++){ //OBTENGO EL E11[LABEL=""]
                     String adentro2=(String) clienteEspera.verPosicionZ(i, j);
-                    strAux3.append("E" + (i + 1)+(j+1) + " [label=\"" + adentro2 + "\"]\n");
-                    if(j==0){
-                        strAux6.append("E"+(i+1)+":e->"+"E"+(i+1)+(j+1)+":w\n");
-                    }else if(j>0){
-                        strAux6.append("E" +(i+1)+(j) + ":e->" + "E" + (i + 1) + (j + 1) + ":w\n");
+                    strAux3.append("E" + (i + 1)+"o"+(j+1) + " [label=\"" + adentro2 + "\"]\n");
+                    if(j<=0){
+                        strAux6.append("E"+(i+1)+":e->"+"E"+(i+1)+"o"+(j+1)+":w\n");
+                    }else if(j>=1){
+                        strAux6.append("E" +(i+1)+"o"+(j) + ":e->" + "E" + (i + 1) +"o"+ (j + 1) + ":w\n");
                     }
                 }
                 if (clienteEspera.lengthLc() - 1 != i) {
@@ -299,7 +307,7 @@ public class opMenu {
         ListaSimple cincoC = new ListaSimple();
         ListaSimple cincoBN = new ListaSimple();
         /*RECOPILANDO COLOR BLANCO Y NEGRO*/
-        for(int i=0;i<ventana.length();i++){
+        for(int i=0;i<ventana.length();i++){//AGREGO LOS DE LA VENTANA
             String[] cC=(String[])ventana.verPosicion(i);
             // ID NOMBRE COLOR BN PASOS {C,BN} F VENTANILLA
             String[] arrayC={cC[1],cC[2]};
@@ -307,7 +315,7 @@ public class opMenu {
             cincoC.instarInicio(arrayC);
             cincoBN.instarInicio(arrayBN);
         }
-        for (int i = 0; i < cEspera.lengthLc(); i++) {
+        for (int i = 0; i < cEspera.lengthLc(); i++) {//AGREGO LOS DE CLIENTES EN ESPERA
             String[] cC = (String[]) cEspera.verPosicionLc(i);
             // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
             String[] arrayC = { cC[1], cC[2] };
@@ -315,15 +323,64 @@ public class opMenu {
             cincoC.instarInicio(arrayC);
             cincoBN.instarInicio(arrayBN);
         }
-        for (int i = 0; i < cAtendido.length(); i++) {
+        int clienteMasId=0;
+        for (int i = 0; i < cAtendido.length(); i++) {//AGREO LOS DE CLIENTES ATENDIDOS
             String[] cC = (String[]) cAtendido.verPosicion(i);
             // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
             String[] arrayC = { cC[1], cC[2] };
             String[] arrayBN = { cC[1], cC[3] };
             cincoC.instarInicio(arrayC);
             cincoBN.instarInicio(arrayBN);
+
+            if(Integer.valueOf(cC[4])>clienteMasId){//BUSCO EL ID MAYOR Y LO CAMBIO
+                clienteMasId=Integer.valueOf(cC[4]);
+            }
         }
 
-        
+        for(int i=0;i<cincoC.length();i++){
+            for (int j = 0; j < cincoC.length()-1; j++) {
+                //NOMBRE NUMERO(bn|c)
+                String[] cL=(String[])cincoC.verPosicion(j);
+                String[] cR = (String[]) cincoC.verPosicion(j + 1);
+
+                String[] bnL=(String[])cincoBN.verPosicion(j);
+                String[] bnR=(String[])cincoBN.verPosicion(j+1);
+
+                String[] aux;
+                if(Integer.valueOf(cL[1])<Integer.valueOf(cR[1])){
+                    aux=cL;
+                    cincoC.sustituirId(j, cR);
+                    cincoC.sustituirId(j+1, aux);
+                }
+                if (Integer.valueOf(bnL[1]) < Integer.valueOf(bnR[1])) {
+                    aux = bnL;
+                    cincoBN.sustituirId(j, bnR);
+                    cincoBN.sustituirId(j + 1, aux);
+                }
+            }
+        }
+
+        for(int i=0;i<5;i++){
+            if(i<cincoC.length()){
+                String[] c=(String[])cincoC.verPosicion(i);
+                System.out.println("TOP C:"+(i+1)+" ->"+c[0]+"::"+c[1]);
+            }
+            
+        }
+        for(int i=0;i<5;i++){
+            if(i<cincoBN.length()){
+                String[] bn=(String[])cincoBN.verPosicion(i);
+                System.out.println("TOP BN:"+(i+1)+" ->"+bn[0]+"::"+bn[1]);
+            }
+            
+        }
+        if(cAtendido.length()==0){
+             System.out.println("NO HAY CLIENTE CON MAS PASOS POR QUE A UN NO HAY CLIENTE ATENDIDO");
+        }else{
+            // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+            String[] ca=(String[])cAtendido.verPosicion(clienteMasId);
+            System.out.println("MAS PASOS ESTUVO: "+ca[0]+"->IMAGENES[C;BN] "+ca[2]+";"+ca[3]+" CON "+ca[4]+ " PASOS");
+        }
+
     }
 }

@@ -110,14 +110,14 @@ public class funcInternas {
                     String[] impC = (String[]) color.verPosicion(0);
                     int pasosC = Integer.parseInt(impC[2]) - 1;
                     if (pasosC == 0) {// VEO SI SE ACABO LOS 2 PASOS
-                        if (impC[0] == cE[0]) {// ID==
+                        if (impC[0] == cE[0]) {//
                             System.out.println(cE[1] + " SE IMPRIMIO LA IMG A COLOR DE " + cE[1]);
                             clienteEspera.insertarZ("COLOR", i);
                             color.pop();
                         }
                     } else {// SUSTITUIR CON -1 PASO
                         impC[2] = String.valueOf(pasosC);
-                        color.sustituirId(i, impC);
+                        color.sustituirId(0, impC);//ERROR XD
                     }
                 }
                 if ( blancoNegro.length() != 0) {
@@ -133,7 +133,8 @@ public class funcInternas {
                 }     
                 //OLD
                 int cantImg = clienteEspera.cantNodosInsertZ(i);
-                if (cantImg == Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR
+                //CAMBIA <=
+                if (cantImg <= Integer.parseInt(cE[2]) + Integer.parseInt(cE[3])) {// ENCONTRAR
                     if (cE[5] == "IMP") {//
                         cE[5] = "LEFT"; 
                         /*int countP = 1 + Integer.parseInt(cE[4]);
