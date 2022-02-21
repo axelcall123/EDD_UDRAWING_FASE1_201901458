@@ -303,9 +303,10 @@ public class opMenu {
         Desktop desktop = Desktop.getDesktop();
         if (file.exists())desktop.open(fileSvg);}
 
-    public void casoCinco(ListaSimple ventana,ListasListas cEspera, ListaSimpleCircular cAtendido){
+    public void casoCinco(ListaSimple ventana,ListasListas cEspera, ListaSimpleCircular cAtendido, String nombre){
         ListaSimple cincoC = new ListaSimple();
         ListaSimple cincoBN = new ListaSimple();
+        String buscar="";
         /*RECOPILANDO COLOR BLANCO Y NEGRO*/
         for(int i=0;i<ventana.length();i++){//AGREGO LOS DE LA VENTANA
             if(ventana.verPosicion(i).toString()!="Vacia"){
@@ -315,7 +316,11 @@ public class opMenu {
                 String[] arrayBN = { cC[1], cC[3] };
                 cincoC.instarInicio(arrayC);
                 cincoBN.instarInicio(arrayBN);
+                if(nombre.equals(cC[1].toString())){
+                    buscar="NOMBRE: "+cC[1]+" COLOR: "+ cC[2] +" BN: "+ cC[3] +" PASOS: "+cC[4];
+                }
             }
+            
         }
         
         for (int i = 0; i < cEspera.lengthLc(); i++) {//AGREGO LOS DE CLIENTES EN ESPERA
@@ -325,6 +330,9 @@ public class opMenu {
             String[] arrayBN = { cC[1], cC[3] };
             cincoC.instarInicio(arrayC);
             cincoBN.instarInicio(arrayBN);
+            if (nombre.equals(cC[1].toString())) {
+                buscar = "NOMBRE: " + cC[1] + " COLOR: " + cC[2] + " BN: " + cC[3] + " PASOS: " + cC[4]+"v"+cC[6];
+            }
         }
         int clienteMasId=0;
         for (int i = 0; i < cAtendido.length(); i++) {//AGREO LOS DE CLIENTES ATENDIDOS
@@ -337,6 +345,9 @@ public class opMenu {
 
             if(Integer.valueOf(cC[4])>clienteMasId){//BUSCO EL ID MAYOR Y LO CAMBIO
                 clienteMasId=Integer.valueOf(cC[4]);
+            }
+            if (nombre.equals(cC[1].toString())) {
+                buscar = "NOMBRE: " + cC[1] + " COLOR: " + cC[2] + " BN: " + cC[3] + " PASOS: " + cC[4] + "v" + cC[6];
             }
         }
 
@@ -384,6 +395,11 @@ public class opMenu {
             String[] ca=(String[])cAtendido.verPosicion(clienteMasId);
             System.out.println("MAS PASOS ESTUVO: "+ca[0]+"->IMAGENES[C;BN] "+ca[2]+";"+ca[3]+" CON "+ca[4]+ " PASOS");
         }
-        
+        if(buscar.equals("")){
+            System.out.println("*/*/*/*");
+        }else{
+            System.out.println("Cliente Buscado-->"+ buscar);
+        }
+
     }
 }

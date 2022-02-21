@@ -65,8 +65,8 @@ public class P1_EDD_2022 {
                         }else{
                             //SOLO FALTA LA CANTIDAD DE*/*/*/*/*
                             System.out.println("ELIGA LAS CANTIDAD DE PASOS A EJECUTAR");
-                            ingresoOp2 = new Scanner(System.in);
-                            int caso3 = ingresoOp2.nextInt();
+                            Scanner ingresoOp3 = new Scanner(System.in);
+                            int caso3 = ingresoOp3.nextInt();
                             Object[] array=(Object[])casosNum.casoTres(caso3, clientesCola, impC, impBn, clienteAtendido, ventanillas, clienteEspera);
                             //  0        1         2           3           4              5         6
                             // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
@@ -83,7 +83,15 @@ public class P1_EDD_2022 {
                         casosNum.casoCuatro(ventanillas,clienteEspera,clienteAtendido);
                         break;
                     case 5://REPORTES
-                        casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
+                        System.out.println("ELIGA SI QUIER BUSCAR Y/N");
+                        Scanner ingresoOp5 = new Scanner(System.in);
+                        String casoCinco = ingresoOp5.nextLine().toString();
+                        if(casoCinco.toString().equals("Y")){
+                            System.out.println("INGRESE A QUIEN QUIERE BUSCAR");
+                            Scanner ingreso2Op5 = new Scanner(System.in);
+                            casoCinco = ingreso2Op5.nextLine().toString();
+                        }
+                        casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido, casoCinco);
                         break;
                     case 6:
                         System.out.println("AXEL CALDERON 201901458 EDD");
@@ -98,7 +106,7 @@ public class P1_EDD_2022 {
                         //PASO3
                         // 0        1           2       3                4             5          6       
                         // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        for(int i=0;i<90;i++){
+                        for(int i=0;i<1;i++){
                             Object[] array = (Object[]) casosNum.casoTres(2, clientesCola, impC, impBn,
                             clienteAtendido, ventanillas, clienteEspera);
                             clientesCola = (ListaSimple) array[1];
@@ -109,7 +117,8 @@ public class P1_EDD_2022 {
                             clienteEspera = (ListasListas) array[6];
                             // PASO4
                             casosNum.casoCuatro(ventanillas, clienteEspera, clienteAtendido);
-                            casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido);
+
+                            casosNum.casoCinco(ventanillas, clienteEspera, clienteAtendido,"Geraldine Pierce");
                         } 
                         break; 
                     case 15:
