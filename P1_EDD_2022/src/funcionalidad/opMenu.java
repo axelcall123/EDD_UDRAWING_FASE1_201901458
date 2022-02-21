@@ -337,7 +337,7 @@ public class opMenu {
         int clienteMasId=0;
         for (int i = 0; i < cAtendido.length(); i++) {//AGREO LOS DE CLIENTES ATENDIDOS
             String[] cC = (String[]) cAtendido.verPosicion(i);
-            // ID NOMBRE COLOR BN PASOS PUEDEsEGUIR VENTANILLA
+            // ID NOMBRE COLOR BN PASOS VENTANILLA
             String[] arrayC = { cC[1], cC[2] };
             String[] arrayBN = { cC[1], cC[3] };
             cincoC.instarInicio(arrayC);
@@ -347,7 +347,7 @@ public class opMenu {
                 clienteMasId=Integer.valueOf(cC[4]);
             }
             if (nombre.equals(cC[1].toString())) {
-                buscar = "NOMBRE: " + cC[1] + " COLOR: " + cC[2] + " BN: " + cC[3] + " PASOS: " + cC[4] + "v" + cC[6];
+                buscar = "NOMBRE: " + cC[1] + " COLOR: " + cC[2] + " BN: " + cC[3] + " PASOS: " + cC[4] + "v" + cC[5];
             }
         }
 

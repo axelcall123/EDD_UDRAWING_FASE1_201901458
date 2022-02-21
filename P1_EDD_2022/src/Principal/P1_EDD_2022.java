@@ -106,7 +106,7 @@ public class P1_EDD_2022 {
                         //PASO3
                         // 0        1           2       3                4             5          6       
                         // vPasos,coInicial,impresoraC,impresoraBN,clienteAtendido,ventana,clienteEspera
-                        for(int i=0;i<1;i++){
+                        for(int i=0;i<45;i++){
                             Object[] array = (Object[]) casosNum.casoTres(2, clientesCola, impC, impBn,
                             clienteAtendido, ventanillas, clienteEspera);
                             clientesCola = (ListaSimple) array[1];
