@@ -8,8 +8,7 @@ public class ListaCirculaDobleEnlazada<E extends Comparable<E>> {
     }
     
     public void insertarLc(E info) {
-        Nodo nuevo = new Nodo();
-        nuevo.info = info;
+        Nodo<E> nuevo = new Nodo<E>(info);
         nuevo.setSiguiente(nuevo);
         nuevo.setAnterior(nuevo);
         if (this.lc != null) {
