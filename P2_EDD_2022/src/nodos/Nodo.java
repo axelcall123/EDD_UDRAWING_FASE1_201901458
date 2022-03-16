@@ -5,7 +5,7 @@ public class Nodo<E> {
     E info;
     Nodo<E> iz,de,
     sig,ant,
-    arr,abj;
+    arb,abj;
     int i,j;
     public Nodo(int i,int j,E info){
         this.i=i;
